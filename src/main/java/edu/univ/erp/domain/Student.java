@@ -13,14 +13,19 @@ public class Student {
     // set by setter
     private String name;
 
-    Student(int user_id, int student_id, String name, String username, int roll_no, String program, int current_year){
+    Student(int user_id, String name, String username, int roll_no, String program, int current_year){
         this.user_id = user_id;
-        this.student_id = student_id;
         this.name = name;
         this.username = username;
         this.roll_no = roll_no;
         this.program = program;
         this.current_year = current_year;
+    }
+
+    // setters
+
+    public void setStudentId(int student_id){
+        this.student_id = student_id;
     }
 
     // getters

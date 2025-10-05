@@ -9,12 +9,17 @@ public class Grade {
     private double score; // marks scored in component
     private double final_grade; // adjust score according to weightage
 
-    Grade(int grade_id, int enrollment_id, String component, double score, double final_grade){
+    Grade(int enrollment_id, String component, double score, double final_grade){
         this.enrollment_id = enrollment_id;
-        this.grade_id = grade_id;
         this.component = component;
         this.score = score;
         this.final_grade = final_grade;
+    }
+
+    // setters
+
+    public void setGradeId(int grade_id){
+        this.grade_id = grade_id;
     }
 
     // getters

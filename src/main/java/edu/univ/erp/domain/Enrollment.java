@@ -8,11 +8,15 @@ public class Enrollment {
     private int section_id; // query erp_db.section_id with course_id
     private String status; // enrolled or dropped, default: enrolled
 
-    Enrollment(int enrollment_id, int student_id, int section_id, String status){
-        this.enrollment_id = enrollment_id;
+    Enrollment(int student_id, int section_id, String status){
         this.student_id = student_id;
         this.section_id = section_id;
         this.status = status;
+    }
+
+    // setters
+    public void setEnrollmentId(int enrollment_id){
+        this.enrollment_id = enrollment_id;
     }
 
     // getters

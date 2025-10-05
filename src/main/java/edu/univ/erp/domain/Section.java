@@ -13,8 +13,7 @@ public class Section {
     private String semester;
     private String name;
 
-    Section(int section_id, int course_id, int instructor_id, String name, int capacity, int year, String day_time, String room, String semester){
-        this.section_id = section_id;
+    Section(int course_id, int instructor_id, String name, int capacity, int year, String day_time, String room, String semester){
         this.course_id = course_id;
         this.instructor_id = instructor_id;
         this.capacity = capacity;
@@ -23,6 +22,12 @@ public class Section {
         this.room = room;
         this.semester = semester;
         this.name = name;
+    }
+
+    // setters
+
+    public void setSectionId(int section_id){
+        this.section_id = section_id;
     }
 
     // getters

@@ -9,11 +9,15 @@ public class Course {
     private String title;
 
 
-    Course(int course_id, String code, String title, int credits){
-        this.course_id = course_id;
+    Course(String code, String title, int credits){
         this.code = code;
         this.title = title;
         this.credits = credits;
+    }
+
+    // setters
+    public void setCourseId(int course_id){
+        this.course_id = course_id;
     }
 
 
