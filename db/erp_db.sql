@@ -3,6 +3,7 @@
 CREATE TABLE students(
     user_id INT PRIMARY KEY, -- fetch from db/auth_db.users_auth table after creating entry
     student_id INT AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE, -- fetch from db/auth_db.users_auth table after creating entry
     roll_no INT NOT NULL UNIQUE,
     program ENUM('B.Tech', 'M.Tech', 'PhD') NOT NULL,
@@ -13,6 +14,7 @@ CREATE TABLE students(
 CREATE TABLE instructors(
     user_id INT PRIMARY KEY, -- fetch from db/auth_db.users_auth table after creating entry
     instructor_id INT AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE, -- fetch from db/auth_db.users_auth table after creating entry
     department VARCHAR(10) NOT NULL
 )
@@ -30,6 +32,7 @@ CREATE TABLE sections(
     section_id INT AUTO_INCREMENT PRIMARY KEY,
     course_id INT NOT NULL, -- query courses table with course code
     instructor_id INT NOT NULL,
+    name VARCHAR(50) NOT NULL,
     day_time VARCHAR(100),
     room VARCHAR(10),
     capacity INT NOT NULL,

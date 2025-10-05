@@ -2,16 +2,21 @@ package edu.univ.erp.domain;
 
 public class Student {
     // fetch from db;
+
     private int user_id; // auto-increment in auth_db.users_auth
     private int student_id; // auto-increment
-
-    // set by constructor during sign up
-    private String username;
     private int roll_no;
-    private String program;
     private int current_year;
+    private String username;
+    private String program;
 
-    Student(String username, int roll_no, String program, int current_year){
+    // set by setter
+    private String name;
+
+    Student(int user_id, int student_id, String name, String username, int roll_no, String program, int current_year){
+        this.user_id = user_id;
+        this.student_id = student_id;
+        this.name = name;
         this.username = username;
         this.roll_no = roll_no;
         this.program = program;
@@ -19,6 +24,7 @@ public class Student {
     }
 
     // getters
+
     public int getUserId(){
         return this.user_id;
     }
@@ -43,11 +49,15 @@ public class Student {
         return this.program;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     // string Representation
 
     @Override
     public String toString(){
-        return String.format("Student {UserId: %d, StudentId: %d, RollNo: %d, CurrentYear: %d, Username: %s, Program: %s}\n", this.getUserId(), this.getStudentId(), this.getRollNo(), this.getCurrentYear(), this.getUsername(), this.getProgram());
+        return String.format("Student {UserId: %d, StudentId: %d, Name: %s, RollNo: %d, CurrentYear: %d, Username: %s, Program: %s}\n", this.getUserId(), this.getStudentId(), this.getName(), this.getRollNo(), this.getCurrentYear(), this.getUsername(), this.getProgram());
     }
 
 

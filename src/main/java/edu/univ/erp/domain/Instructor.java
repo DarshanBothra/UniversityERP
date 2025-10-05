@@ -4,12 +4,14 @@ public class Instructor {
     // fetch from db;
     private int user_id; // auto-increment in auth_db.users_auth
     private int instructor_id; // auto-increment
-
-    // set by constructor during sign up
     private String username;
+    private String name;
     private String department;
 
-    Instructor(String username, String department){
+    Instructor(int user_id, int instructor_id, String name, String username, String department){
+        this.user_id = user_id;
+        this.instructor_id = instructor_id;
+        this.name = name;
         this.username = username;
         this.department = department;
     }
@@ -31,11 +33,15 @@ public class Instructor {
         return this.department;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     // string Representation
 
     @Override
     public String toString(){
-        return String.format("Instructor {UserId: %d InstructorId: %d, Username: %s, Department: %s}\n", this.getUserId(), this.getInstructorId(), this.getUsername(), this.getDepartment());
+        return String.format("Instructor {UserId: %d InstructorId: %d, Name: %s, Username: %s, Department: %s}\n", this.getUserId(), this.getInstructorId(), this.getName(), this.getUsername(), this.getDepartment());
     }
 
 

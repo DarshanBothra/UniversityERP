@@ -2,18 +2,20 @@ package edu.univ.erp.domain;
 
 public class Course {
     // fetch from db
-    private int course_id; // auto-increment in erp_db.courses;
 
-    // set by constructor during course creation
+    private int course_id; // auto-increment in erp_db.courses;
+    private int credits;
     private String code;
     private String title;
-    private int credits;
 
-    Course(String code, String title, int credits){
+
+    Course(int course_id, String code, String title, int credits){
+        this.course_id = course_id;
         this.code = code;
         this.title = title;
         this.credits = credits;
     }
+
 
     // getters
     public int getCourseId(){
@@ -35,6 +37,6 @@ public class Course {
     // String Representation;
     @Override
     public String toString(){
-        return String.format("Course {Code: %s, Title: %s, Credits: %d", this.getCode(), this.getTitle(), this.getCredits());
+        return String.format("Course {CourseId: %d, Code: %s, Title: %s, Credits: %d", this.getCourseId(), this.getCode(), this.getTitle(), this.getCredits());
     }
 }
