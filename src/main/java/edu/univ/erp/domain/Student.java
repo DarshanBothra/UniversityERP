@@ -47,7 +47,7 @@ public class Student {
 
     @Override
     public String toString(){
-        return String.format("Student{UserId: %d, StudentId: %d, RollNo: %d, CurrentYear: %d, Username: %s, Program: %s}\n", this.getUserId(), this.getStudentId(), this.getRollNo(), this.getCurrentYear(), this.getUsername(), this.getProgram());
+        return String.format("Student {UserId: %d, StudentId: %d, RollNo: %d, CurrentYear: %d, Username: %s, Program: %s}\n", this.getUserId(), this.getStudentId(), this.getRollNo(), this.getCurrentYear(), this.getUsername(), this.getProgram());
     }
 
 
