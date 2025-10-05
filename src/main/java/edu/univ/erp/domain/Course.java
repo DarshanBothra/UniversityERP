@@ -37,6 +37,6 @@ public class Course {
     // String Representation;
     @Override
     public String toString(){
-        return String.format("Course {CourseId: %d, Code: %s, Title: %s, Credits: %d", this.getCourseId(), this.getCode(), this.getTitle(), this.getCredits());
+        return String.format("Course {CourseId: %d, Code: %s, Title: %s, Credits: %d}\n", this.getCourseId(), this.getCode(), this.getTitle(), this.getCredits());
     }
 }

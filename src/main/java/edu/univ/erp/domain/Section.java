@@ -6,7 +6,7 @@ public class Section {
     private int section_id; // auto-increment in erp_db.sections
     private int course_id; // query courses table with course code to fetch course_id
     private int instructor_id; // instructor table with username
-    private int capacity;
+    private int capacity; // fetch capacity by counting the number of students enrolled in the section
     private int year;
     private String day_time;
     private String room;
@@ -66,7 +66,7 @@ public class Section {
     // String Representation
     @Override
     public String toString(){
-        return String.format("Section {SectionId: %d, CourseId: %d, InstructorId: %d, Name: %s, Capacity: %d, Day Time: %s, Room: %s, Semester: %s, Year: %d", this.getSectionId(), this.getCourseId(), this.getInstructorId(), this.getName(), this.getCapacity(), this.getDayTime(), this.getRoom(), this.getSemester(), this.getYear());
+        return String.format("Section {SectionId: %d, CourseId: %d, InstructorId: %d, Name: %s, Capacity: %d, Day Time: %s, Room: %s, Semester: %s, Year: %d}\n", this.getSectionId(), this.getCourseId(), this.getInstructorId(), this.getName(), this.getCapacity(), this.getDayTime(), this.getRoom(), this.getSemester(), this.getYear());
     }
 
 }

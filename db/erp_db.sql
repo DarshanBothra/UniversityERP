@@ -42,6 +42,15 @@ CREATE TABLE sections(
 
 -- enrollments table
 CREATE TABLE enrollments(
+    enrollment_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    section_id INT NOT NULL,
+    status ENUM('Enrolled', 'Dropped') DEFAULT 'Enrolled'
+
+)
+
+-- grades table
+CREATE TABLE grades(
     grade_id INT AUTO_INCREMENT PRIMARY KEY,
     enrollment_id INT NOT NULL,
     component VARCHAR(50) NOT NULL,
