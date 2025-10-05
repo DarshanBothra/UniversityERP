@@ -2,7 +2,7 @@ package edu.univ.erp.domain;
 
 public class Student {
     // fetch from db;
-    private int user_id; // auto-increment
+    private int user_id; // auto-increment in auth_db.users_auth
     private int student_id; // auto-increment
 
     // set by constructor during sign up
