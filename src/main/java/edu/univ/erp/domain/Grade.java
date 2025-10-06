@@ -5,16 +5,20 @@ public class Grade {
 
     private int grade_id; // auto-increment in table erp_db.grades
     private int enrollment_id; // query erp_db.enrollments with student_id and section_id (fetch from instructor entering grade from selected section)
-    private String component; // quiz, midsem or endsem
+    private Component component; // quiz, midsem or endsem
     private double score; // marks scored in component
     private double final_grade; // adjust score according to weightage
 
-    Grade(int grade_id, int enrollment_id, String component, double score, double final_grade){
+    Grade(int enrollment_id, Component component, double score, double final_grade){
         this.enrollment_id = enrollment_id;
-        this.grade_id = grade_id;
         this.component = component;
         this.score = score;
         this.final_grade = final_grade;
+    }
+
+    // setters
+    public void setGradeId(int grade_id){
+        this.grade_id = grade_id;
     }
 
     // getters
@@ -26,7 +30,7 @@ public class Grade {
         return this.grade_id;
     }
 
-    public String getComponent(){
+    public Component getComponent(){
         return this.component;
     }
 
@@ -42,6 +46,6 @@ public class Grade {
 
     @Override
     public String toString(){
-        return String.format("Grade {GradeId: %d, EnrollmentId: %d, Component: %s, Score: %f, FinalGrade: %f}\n", this.getGradeId(), this.getEnrollmentId(), this.getComponent(), this.getScore(), this.getFinalGrade());
+        return String.format("Grade {GradeId: %d, EnrollmentId: %d, Component: %s, Score: %f, FinalGrade: %f}\n", this.getGradeId(), this.getEnrollmentId(), this.getComponent().toString(), this.getScore(), this.getFinalGrade());
     }
 }

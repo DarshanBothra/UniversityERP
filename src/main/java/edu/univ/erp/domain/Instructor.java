@@ -8,12 +8,16 @@ public class Instructor {
     private String name;
     private String department;
 
-    Instructor(int user_id, int instructor_id, String name, String username, String department){
+    Instructor(int user_id, String name, String username, String department){
         this.user_id = user_id;
-        this.instructor_id = instructor_id;
         this.name = name;
         this.username = username;
         this.department = department;
+    }
+
+    // setters
+    public void setInstructorId(int instructor_id){
+        this.instructor_id = instructor_id;
     }
 
     // getters

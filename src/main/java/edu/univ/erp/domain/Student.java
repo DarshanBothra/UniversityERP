@@ -8,19 +8,24 @@ public class Student {
     private int roll_no;
     private int current_year;
     private String username;
-    private String program;
+    private Program program;
 
     // set by setter
     private String name;
 
-    Student(int user_id, int student_id, String name, String username, int roll_no, String program, int current_year){
+    Student(int user_id, String name, String username, int roll_no, Program program, int current_year){
         this.user_id = user_id;
-        this.student_id = student_id;
         this.name = name;
         this.username = username;
         this.roll_no = roll_no;
         this.program = program;
         this.current_year = current_year;
+    }
+
+    // setters
+
+    public void setStudentId(int student_id){
+        this.student_id = student_id;
     }
 
     // getters
@@ -45,7 +50,7 @@ public class Student {
         return this.username;
     }
 
-    public String getProgram(){
+    public Program getProgram(){
         return this.program;
     }
 
@@ -57,7 +62,7 @@ public class Student {
 
     @Override
     public String toString(){
-        return String.format("Student {UserId: %d, StudentId: %d, Name: %s, RollNo: %d, CurrentYear: %d, Username: %s, Program: %s}\n", this.getUserId(), this.getStudentId(), this.getName(), this.getRollNo(), this.getCurrentYear(), this.getUsername(), this.getProgram());
+        return String.format("Student {UserId: %d, StudentId: %d, Name: %s, RollNo: %d, CurrentYear: %d, Username: %s, Program: %s}\n", this.getUserId(), this.getStudentId(), this.getName(), this.getRollNo(), this.getCurrentYear(), this.getUsername(), this.getProgram().toString());
     }
 
 
