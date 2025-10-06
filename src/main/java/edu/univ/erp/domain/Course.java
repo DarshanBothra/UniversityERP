@@ -20,7 +20,6 @@ public class Course {
         this.course_id = course_id;
     }
 
-
     // getters
     public int getCourseId(){
         return this.course_id;
