@@ -8,7 +8,7 @@ public class Enrollment {
     private int section_id; // query erp_db.section_id with course_id
     private Status status; // enrolled or dropped, default: enrolled
 
-    Enrollment(int student_id, int section_id, Status status){
+    public Enrollment(int student_id, int section_id, Status status){
         this.student_id = student_id;
         this.section_id = section_id;
         this.status = status;
@@ -40,6 +40,6 @@ public class Enrollment {
 
     @Override
     public String toString(){
-        return String.format("Enrollment {EnrollmentId: %d, StudentId: %d, SectionId: %d, Status: %s}\n", this.getEnrollmentId(), this.getStudentId(), this.getSectionId(), this.getStatus().toString());
+        return String.format("Enrollment {EnrollmentId: %d, StudentId: %d, SectionId: %d, Status: %s}\n", this.getEnrollmentId(), this.getStudentId(), this.getSectionId(), this.getStatus().getDbValue());
     }
 }

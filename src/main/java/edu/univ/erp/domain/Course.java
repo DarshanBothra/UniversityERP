@@ -9,7 +9,7 @@ public class Course {
     private String title;
 
 
-    Course(String code, String title, int credits){
+    public Course(String code, String title, int credits){
         this.code = code;
         this.title = title;
         this.credits = credits;

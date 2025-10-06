@@ -13,7 +13,7 @@ public class Student {
     // set by setter
     private String name;
 
-    Student(int user_id, String name, String username, int roll_no, Program program, int current_year){
+    public Student(int user_id, String name, String username, int roll_no, Program program, int current_year){
         this.user_id = user_id;
         this.name = name;
         this.username = username;
@@ -62,7 +62,7 @@ public class Student {
 
     @Override
     public String toString(){
-        return String.format("Student {UserId: %d, StudentId: %d, Name: %s, RollNo: %d, CurrentYear: %d, Username: %s, Program: %s}\n", this.getUserId(), this.getStudentId(), this.getName(), this.getRollNo(), this.getCurrentYear(), this.getUsername(), this.getProgram().toString());
+        return String.format("Student {UserId: %d, StudentId: %d, Name: %s, RollNo: %d, CurrentYear: %d, Username: %s, Program: %s}\n", this.getUserId(), this.getStudentId(), this.getName(), this.getRollNo(), this.getCurrentYear(), this.getUsername(), this.getProgram().getDbValue());
     }
 
 

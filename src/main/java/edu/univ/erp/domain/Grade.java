@@ -9,7 +9,7 @@ public class Grade {
     private double score; // marks scored in component
     private double final_grade; // adjust score according to weightage
 
-    Grade(int enrollment_id, Component component, double score, double final_grade){
+    public Grade(int enrollment_id, Component component, double score, double final_grade){
         this.enrollment_id = enrollment_id;
         this.component = component;
         this.score = score;
@@ -46,6 +46,6 @@ public class Grade {
 
     @Override
     public String toString(){
-        return String.format("Grade {GradeId: %d, EnrollmentId: %d, Component: %s, Score: %f, FinalGrade: %f}\n", this.getGradeId(), this.getEnrollmentId(), this.getComponent().toString(), this.getScore(), this.getFinalGrade());
+        return String.format("Grade {GradeId: %d, EnrollmentId: %d, Component: %s, Score: %f, FinalGrade: %f}\n", this.getGradeId(), this.getEnrollmentId(), this.getComponent().getDbValue(), this.getScore(), this.getFinalGrade());
     }
 }
