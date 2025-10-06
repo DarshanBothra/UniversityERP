@@ -25,7 +25,6 @@ public class Section {
     }
 
     // setters
-
     public void setSectionId(int section_id){
         this.section_id = section_id;
     }

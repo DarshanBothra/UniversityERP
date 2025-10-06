@@ -16,7 +16,6 @@ public class Instructor {
     }
 
     // setters
-
     public void setInstructorId(int instructor_id){
         this.instructor_id = instructor_id;
     }
