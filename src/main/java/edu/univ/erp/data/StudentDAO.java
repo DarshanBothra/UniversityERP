@@ -1,5 +1,6 @@
 package edu.univ.erp.data;
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import edu.univ.erp.domain.Program;
 import edu.univ.erp.domain.Student;
 import java.sql.*;
@@ -25,7 +26,7 @@ public class StudentDAO {
         String sql = "INSERT INTO students (user_id, name, username, roll_no, program, current_year) values (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getERPConnection();
-        PreparedStatement stmt = conn.prepareStatement(sql)){
+        PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
             stmt.setInt(1, student.getUserId());
             stmt.setString(2, student.getName());
             stmt.setString(3, student.getUsername());
@@ -49,11 +50,29 @@ public class StudentDAO {
         return -1; // student was not inserted
     }
 
-    public Student getStudentByRollNo(int roll_no){
+    public Student getStudentById(int studentId){
+        String sql = "SELECT * FROM students WHERE student_id = ?";
+        try(Connection conn = DBConnection.getERPConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, studentId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()){
+                return mapResultToStudentSet(rs);
+            }
+
+        } catch (SQLException e){
+            System.err.println("Error fetching student: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    public Student getStudentByRollNo(int rollNo){
         String sql = "SELECT * FROM students WHERE roll_no = ?";
         try(Connection conn = DBConnection.getERPConnection();
         PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setInt(1, roll_no);
+            stmt.setInt(1, rollNo);
             ResultSet rs = stmt.executeQuery(); // for reads
 
             if (rs.next()){
@@ -70,8 +89,8 @@ public class StudentDAO {
 
         String sql = "SELECT * FROM students";
         try(Connection conn = DBConnection.getERPConnection();
-        PreparedStatement stmt = conn.prepareStatement(sql)){
-            ResultSet rs = stmt.executeQuery();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery()){
 
             while (rs.next()){
                 return_list.add(mapResultToStudentSet(rs));
@@ -83,11 +102,11 @@ public class StudentDAO {
         return return_list;
     }
 
-    public boolean deleteStudent(int roll_no){
+    public boolean deleteStudent(int rollNo){
         String sql = "DELETE FROM students WHERE roll_no = ?";
         try(Connection conn = DBConnection.getERPConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setInt(1, roll_no);
+            stmt.setInt(1, rollNo);
             return stmt.executeUpdate() > 0;
 
         } catch(SQLException e){
@@ -97,12 +116,12 @@ public class StudentDAO {
         return false;
     }
 
-    public boolean updateName(int roll_no, String new_name){
+    public boolean updateName(int rollNo, String newName){
         String sql = "UPDATE students SET name = ? WHERE roll_no = ?";
         try(Connection conn = DBConnection.getERPConnection();
         PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setString(1, new_name);
-            stmt.setInt(2, roll_no);
+            stmt.setString(1, newName);
+            stmt.setInt(2, rollNo);
 
             return stmt.executeUpdate() > 0;
         } catch(SQLException e){
@@ -111,12 +130,12 @@ public class StudentDAO {
         return false;
     }
 
-    public boolean updateProgram(int roll_no, Program new_program){
+    public boolean updateProgram(int rollNo, Program newProgram){
         String sql = "UPDATE students SET program = ? WHERE roll_no = ?";
         try(Connection conn = DBConnection.getERPConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setString(1, new_program.getDbValue());
-            stmt.setInt(2, roll_no);
+            stmt.setString(1, newProgram.getDbValue());
+            stmt.setInt(2, rollNo);
 
             return stmt.executeUpdate() > 0;
         } catch(SQLException e){
@@ -125,12 +144,12 @@ public class StudentDAO {
         return false;
     }
 
-    public boolean updateYear(int roll_no, int new_current_year){
+    public boolean updateYear(int rollNo, int newCurrentYear){
         String sql = "UPDATE students SET current_year = ? WHERE roll_no = ?";
         try(Connection conn = DBConnection.getERPConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setInt(1, new_current_year);
-            stmt.setInt(2, roll_no);
+            stmt.setInt(1, newCurrentYear);
+            stmt.setInt(2, rollNo);
 
             return stmt.executeUpdate() > 0;
         } catch(SQLException e){

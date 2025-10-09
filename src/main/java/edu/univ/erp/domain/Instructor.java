@@ -2,31 +2,31 @@ package edu.univ.erp.domain;
 
 public class Instructor {
     // fetch from db;
-    private int user_id; // auto-increment in auth_db.users_auth
-    private int instructor_id; // auto-increment
+    private int userId; // auto-increment in auth_db.users_auth
+    private int instructorId; // auto-increment
     private String username;
     private String name;
     private String department;
 
-    public Instructor(int user_id, String name, String username, String department){
-        this.user_id = user_id;
+    public Instructor(int userId, String name, String username, String department){
+        this.userId = userId;
         this.name = name;
         this.username = username;
         this.department = department;
     }
 
     // setters
-    public void setInstructorId(int instructor_id){
-        this.instructor_id = instructor_id;
+    public void setInstructorId(int instructorId){
+        this.instructorId = instructorId;
     }
 
     // getters
     public int getUserId(){
-        return this.user_id;
+        return this.userId;
     }
 
     public int getInstructorId(){
-        return this.instructor_id;
+        return this.instructorId;
     }
 
     public String getUsername(){
