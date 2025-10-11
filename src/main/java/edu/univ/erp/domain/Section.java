@@ -13,7 +13,7 @@ public class Section {
     private String semester;
     private String name;
 
-    Section(int course_id, int instructor_id, String name, int capacity, int year, String day_time, String room, String semester){
+    public Section(int course_id, int instructor_id, String name, int capacity, int year, String day_time, String room, String semester){
         this.course_id = course_id;
         this.instructor_id = instructor_id;
         this.capacity = capacity;
