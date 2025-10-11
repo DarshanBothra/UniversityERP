@@ -22,7 +22,7 @@ public class StudentDAO {
     }
 
     public int insertStudent(Student s){
-        String sql = "INSERT INTO students (user_id, name, username, roll_no, program, current_year) values (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO students (user_id, name, username, roll_no, program, current_year) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getERPConnection();
         PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
