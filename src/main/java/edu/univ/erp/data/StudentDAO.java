@@ -39,7 +39,7 @@ public class StudentDAO {
             if (affected > 0){
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()){
-                    int generatedId =rs.getInt(1);
+                    int generatedId =rs.getInt(2);
                     student.setStudentId(generatedId);
                     return generatedId; // return the student id of student inserted
                 }

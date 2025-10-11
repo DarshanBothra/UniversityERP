@@ -15,21 +15,21 @@ public class InstructorDAO {
         return i;
     }
 
-    public int insertInstructor(Instructor instructor){
+    public int insertInstructor(Instructor i){
         String sql = "INSERT INTO instructors (user_id, name, username, department) VALUES (?, ?, ?, ?)";
         try (Connection conn = DBConnection.getERPConnection();
         PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
-            stmt.setInt(1, instructor.getUserId());
-            stmt.setString(2, instructor.getName());
-            stmt.setString(3, instructor.getUsername());
-            stmt.setString(4, instructor.getDepartment());
+            stmt.setInt(1, i.getUserId());
+            stmt.setString(2, i.getName());
+            stmt.setString(3, i.getUsername());
+            stmt.setString(4, i.getDepartment());
 
             int affected = stmt.executeUpdate();
             if (affected > 0){ // instructor was inserted successfully
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()){
                     int instructorId = rs.getInt(2);
-                    instructor.setInstructorId(instructorId);
+                    i.setInstructorId(instructorId);
                     return instructorId;
                 }
 
