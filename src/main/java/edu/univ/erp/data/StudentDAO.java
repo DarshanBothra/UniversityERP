@@ -1,6 +1,5 @@
 package edu.univ.erp.data;
 
-import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import edu.univ.erp.domain.Program;
 import edu.univ.erp.domain.Student;
 import java.sql.*;
@@ -22,17 +21,17 @@ public class StudentDAO {
         return s;
     }
 
-    public int insertStudent(Student student){
+    public int insertStudent(Student s){
         String sql = "INSERT INTO students (user_id, name, username, roll_no, program, current_year) values (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getERPConnection();
         PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
-            stmt.setInt(1, student.getUserId());
-            stmt.setString(2, student.getName());
-            stmt.setString(3, student.getUsername());
-            stmt.setInt(4, student.getRollNo());
-            stmt.setString(5, student.getProgram().getDbValue());
-            stmt.setInt(6, student.getCurrentYear());
+            stmt.setInt(1, s.getUserId());
+            stmt.setString(2, s.getName());
+            stmt.setString(3, s.getUsername());
+            stmt.setInt(4, s.getRollNo());
+            stmt.setString(5, s.getProgram().getDbValue());
+            stmt.setInt(6, s.getCurrentYear());
 
             int affected = stmt.executeUpdate(); // for insert and updates
 
@@ -40,7 +39,7 @@ public class StudentDAO {
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()){
                     int generatedId =rs.getInt(2);
-                    student.setStudentId(generatedId);
+                    s.setStudentId(generatedId);
                     return generatedId; // return the student id of student inserted
                 }
             }
