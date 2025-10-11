@@ -24,7 +24,7 @@ public class EnrollmentDAO {
             int affected = stmt.executeUpdate();
             if (affected > 0){
                 ResultSet rs = stmt.getGeneratedKeys();
-                int enrollmentId = rs.getInt("enrollment_id");
+                int enrollmentId = rs.getInt(1);
                 e.setEnrollmentId(enrollmentId);
                 return enrollmentId;
             }

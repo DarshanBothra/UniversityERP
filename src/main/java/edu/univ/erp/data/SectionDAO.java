@@ -33,7 +33,7 @@ public class SectionDAO {
             int affected = stmt.executeUpdate();
             if (affected > 0){
                 ResultSet rs = stmt.getGeneratedKeys();
-                int sectionId = rs.getInt("section_id");
+                int sectionId = rs.getInt(1);
                 s.setSectionId(sectionId);
                 return sectionId;
             }
