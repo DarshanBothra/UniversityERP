@@ -59,4 +59,43 @@ public class PasswordUtility {
                 plainPassword.matches(".*\\d.*") &&
                 plainPassword.matches(".*[@#$%^&+=!].*");
     }
+
+    // test script for password utility
+    /*
+    public static void main(String[] args){
+
+        // test
+
+        String myPassword = "Admin1234#";
+        String hashedPassword = PasswordUtility.hashPassword(myPassword);
+
+        String passwordTest1 = "adminabc123#";
+        String passwordTest2 = "Admin1234#";
+
+        boolean testResult1 = PasswordUtility.checkPassword(passwordTest1, hashedPassword);
+        boolean testResult2 = PasswordUtility.checkPassword(passwordTest2, hashedPassword);
+
+        boolean strongPassword = PasswordUtility.isStrongPassword(myPassword);
+
+        // Print report
+        System.out.printf(
+                """
+                        ---------- STATS ----------
+                        PASSWORD CHOSEN: %s
+                        PASSWORD HASH: %s
+                        STRONG PASSWORD: %b
+                        
+                        ---------- PASSWORD TEST 1 ---------
+                        INPUT: %s
+                        CORRECT: %b
+                        
+                        ---------- PASSWORD TEST 2 ---------
+                        INPUT: %s
+                        CORRECT: %b
+                        \n""", myPassword, hashedPassword, strongPassword, passwordTest1, testResult1, passwordTest2, testResult2
+        );
+
+    }
+
+ */
 }
