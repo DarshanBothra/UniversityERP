@@ -4,10 +4,10 @@ import edu.univ.erp.domain.LoginStatus;
 import edu.univ.erp.domain.Role;
 import edu.univ.erp.data.DBConnection;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AuthStore {
+
+    public AuthStore(){};
 
     public int insertUser(String username, Role role, String passwordHash){
         String sql = "INSERT INTO users_auth (username, role, password_hash) VALUES (?, ?, ?)";
@@ -154,6 +154,19 @@ public class AuthStore {
             return stmt.executeUpdate() > 0;
         } catch (SQLException e){
             System.err.println("Error updating user status: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean userExists(String username){
+        String sql = "SELECT * FROM users_auth WHERE username = ?";
+        try (Connection conn = DBConnection.getAuthConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e){
+            System.err.println("Error checking for user: " + e.getMessage());
         }
         return false;
     }
