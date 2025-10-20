@@ -3,31 +3,31 @@ package edu.univ.erp.domain;
 public class Grade {
     // fetch from db
 
-    private int grade_id; // auto-increment in table erp_db.grades
-    private int enrollment_id; // query erp_db.enrollments with student_id and section_id (fetch from instructor entering grade from selected section)
+    private int gradeId; // auto-increment in table erp_db.grades
+    private int enrollmentId; // query erp_db.enrollments with studentId and sectionId (fetch from instructor entering grade from selected section)
     private Component component; // quiz, midsem or endsem
     private double score; // marks scored in component
     private double final_grade; // adjust score according to weightage
 
-    public Grade(int enrollment_id, Component component, double score, double final_grade){
-        this.enrollment_id = enrollment_id;
+    public Grade(int enrollmentId, Component component, double score, double final_grade){
+        this.enrollmentId = enrollmentId;
         this.component = component;
         this.score = score;
         this.final_grade = final_grade;
     }
 
     // setters
-    public void setGradeId(int grade_id){
-        this.grade_id = grade_id;
+    public void setGradeId(int gradeId){
+        this.gradeId = gradeId;
     }
 
     // getters
     public int getEnrollmentId(){
-        return this.enrollment_id;
+        return this.enrollmentId;
     }
 
     public int getGradeId(){
-        return this.grade_id;
+        return this.gradeId;
     }
 
     public Component getComponent(){

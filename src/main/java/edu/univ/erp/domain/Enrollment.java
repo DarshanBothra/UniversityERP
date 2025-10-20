@@ -3,33 +3,33 @@ package edu.univ.erp.domain;
 public class Enrollment {
     // fetch from db
 
-    private int enrollment_id; // auto-increment in table erp_db.enrollments
-    private int student_id; // query erp_db.students with roll no
-    private int section_id; // query erp_db.section_id with course_id
+    private int enrollmentId; // auto-increment in table erp_db.enrollments
+    private int studentId; // query erp_db.students with roll no
+    private int sectionId; // query erp_db.sectionId with courseId
     private Status status; // enrolled or dropped, default: enrolled
 
-    public Enrollment(int student_id, int section_id, Status status){
-        this.student_id = student_id;
-        this.section_id = section_id;
+    public Enrollment(int studentId, int sectionId, Status status){
+        this.studentId = studentId;
+        this.sectionId = sectionId;
         this.status = status;
     }
 
     // setters
-    public void setEnrollmentId(int enrollment_id){
-        this.enrollment_id = enrollment_id;
+    public void setEnrollmentId(int enrollmentId){
+        this.enrollmentId = enrollmentId;
     }
 
     // getters
     public int getEnrollmentId(){
-        return this.enrollment_id;
+        return this.enrollmentId;
     }
 
     public int getStudentId(){
-        return this.student_id;
+        return this.studentId;
     }
 
     public int getSectionId(){
-        return this.section_id;
+        return this.sectionId;
     }
 
     public Status getStatus(){

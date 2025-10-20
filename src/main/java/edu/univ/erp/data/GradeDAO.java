@@ -69,6 +69,22 @@ public class GradeDAO {
         return retList;
     }
 
+    public Grade getGradeByEnrollmentId(int enrollmentId){
+        String sql = "SELECT * FROM grades WHERE enrollment_id = ?";
+        try (Connection conn = DBConnection.getERPConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, enrollmentId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()){
+                return mapResultToGrade(rs);
+            }
+        } catch (SQLException e){
+            System.err.println("Error fetching grades: " + e.getMessage());
+        }
+
+        return null;
+    }
+
     public boolean deleteGrade(int gradeId){
         String sql = "DELETE FROM grades WHERE grade_id = ?";
         try (Connection conn = DBConnection.getERPConnection();

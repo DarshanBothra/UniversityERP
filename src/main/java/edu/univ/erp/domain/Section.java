@@ -3,44 +3,44 @@ package edu.univ.erp.domain;
 public class Section {
     // fetch from db
 
-    private int section_id; // auto-increment in erp_db.sections
-    private int course_id; // query courses table with course code to fetch course_id
-    private int instructor_id; // instructor table with username
+    private int sectionId; // auto-increment in erp_db.sections
+    private int courseId; // query courses table with course code to fetch courseId
+    private int instructorId; // instructor table with username
     private int capacity; // fetch capacity by counting the number of students enrolled in the section
     private int year;
-    private String day_time;
+    private String dayTime;
     private String room;
     private String semester;
     private String name;
 
-    public Section(int course_id, int instructor_id, String name, int capacity, int year, String day_time, String room, String semester){
-        this.course_id = course_id;
-        this.instructor_id = instructor_id;
+    public Section(int courseId, int instructorId, String name, int capacity, int year, String dayTime, String room, String semester){
+        this.courseId = courseId;
+        this.instructorId = instructorId;
         this.capacity = capacity;
         this.year = year;
-        this.day_time = day_time;
+        this.dayTime = dayTime;
         this.room = room;
         this.semester = semester;
         this.name = name;
     }
 
     // setters
-    public void setSectionId(int section_id){
-        this.section_id = section_id;
+    public void setSectionId(int sectionId){
+        this.sectionId = sectionId;
     }
 
     // getters
 
     public int getSectionId(){
-        return this.section_id;
+        return this.sectionId;
     }
 
     public int getCourseId(){
-        return this.course_id;
+        return this.courseId;
     }
 
     public int getInstructorId(){
-        return this.instructor_id;
+        return this.instructorId;
     }
 
     public int getYear(){
@@ -52,7 +52,7 @@ public class Section {
     }
 
     public String getDayTime(){
-        return this.day_time;
+        return this.dayTime;
     }
 
     public String getRoom(){

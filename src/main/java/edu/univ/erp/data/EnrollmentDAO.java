@@ -64,6 +64,23 @@ public class EnrollmentDAO {
         return retList;
     }
 
+    public List<Enrollment> getAllEnrollmentsForStudent(int studentId){
+        List<Enrollment> retList = new ArrayList<Enrollment>();
+        String sql = "SELECT * FROM enrollments WHERE student_id = ? AND status = ?";
+        try (Connection conn = DBConnection.getERPConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, studentId);
+            stmt.setString(2, "Enrolled");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                retList.add(mapResultToEnrollment(rs));
+            }
+        } catch (SQLException e){
+            System.err.println("Error fetching enrollments: " + e.getMessage());
+        }
+        return retList;
+    }
+
     public boolean deleteEnrollment(int enrollmentId){
         String sql = "DELETE FROM enrollments WHERE enrollment_id = ?";
         try (Connection conn = DBConnection.getERPConnection();
