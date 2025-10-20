@@ -190,4 +190,39 @@ public class SectionDAO {
         return false;
     }
 
+    /**
+     * Fetches number of current enrollments in a section
+     * @param sectionId
+     * @return
+     */
+    public int getEnrollmentCount(int sectionId){
+        String sql = "SELECT COUNT(*) FROM enrollments WHERE section_id = ?";
+        try (Connection conn = DBConnection.getERPConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, sectionId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()){
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e){
+            System.err.println("Error fetching enrollment count: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public boolean isSectionFull(int sectionId){
+        try {
+            int sectionCapacity = this.getSectionById(sectionId).getCapacity();
+            int currentEnrollment = this.getEnrollmentCount(sectionId);
+            return sectionCapacity <= currentEnrollment;
+        } catch (Exception e){
+            System.err.println("Error checking section capacity: " + e.getMessage());
+        }
+        return false;
+
+    }
+
+
+
 }
