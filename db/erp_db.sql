@@ -1,5 +1,3 @@
--- db/erp_db.sql
--- students table
 CREATE TABLE students(
     user_id INT PRIMARY KEY, -- fetch from db/auth_db.users_auth table after creating entry
     student_id INT AUTO_INCREMENT,
@@ -8,26 +6,23 @@ CREATE TABLE students(
     roll_no INT NOT NULL UNIQUE,
     program ENUM('B.Tech', 'M.Tech', 'PhD') NOT NULL,
     current_year INT NOT NULL
-)
+);
 
--- instructors table
 CREATE TABLE instructors(
     user_id INT PRIMARY KEY, -- fetch from db/auth_db.users_auth table after creating entry
     instructor_id INT AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE, -- fetch from db/auth_db.users_auth table after creating entry
     department VARCHAR(10) NOT NULL
-)
+);
 
--- courses table
 CREATE TABLE courses(
     course_id INT AUTO_INCREMENT PRIMARY KEY,
     code VARCHAR(10) NOT NULL UNIQUE,
     title VARCHAR(50) NOT NULL,
     credits INT NOT NULL
-)
+);
 
--- sections table
 CREATE TABLE sections(
     section_id INT AUTO_INCREMENT PRIMARY KEY,
     course_id INT NOT NULL, -- query courses table with course code
@@ -38,30 +33,27 @@ CREATE TABLE sections(
     capacity INT NOT NULL,
     semester VARCHAR(50) NOT NULL,
     current_year INT NOT NULL
-)
+);
 
--- enrollments table
 CREATE TABLE enrollments(
     enrollment_id INT AUTO_INCREMENT PRIMARY KEY,
     student_id INT NOT NULL,
     section_id INT NOT NULL,
     status ENUM('Enrolled', 'Dropped') DEFAULT 'Enrolled'
 
-)
+);
 
--- grades table
 CREATE TABLE grades(
     grade_id INT AUTO_INCREMENT PRIMARY KEY,
     enrollment_id INT NOT NULL,
     component VARCHAR(50) NOT NULL,
     score DOUBLE DEFAULT 0,
     final_grade DOUBLE DEFAULT 0
-)
+);
 
--- settings
 CREATE TABLE settings(
     setting_key VARCHAR(255) PRIMARY KEY,
     setting_value VARCHAR(255)
-)
+);
 
--- seed data (continue/ enter later)
+INSERT INTO settings (setting_key, setting_value) VALUES ('maintenance_on', 'off');

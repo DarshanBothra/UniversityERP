@@ -27,7 +27,7 @@ public class DBConnection {
     // Load configuration from db_config.properties
     private static void loadProperties() {
         Properties props = new Properties();
-        try (FileInputStream fis = new FileInputStream("db_config.properties")) {
+        try (FileInputStream fis = new FileInputStream("config/db_config.properties")) {
             props.load(fis);
             HOST = props.getProperty("db.host", "localhost");
             PORT = props.getProperty("db.port", "3306");
