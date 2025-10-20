@@ -4,7 +4,6 @@ import edu.univ.erp.auth.*;
 import edu.univ.erp.auth.session.*;
 import edu.univ.erp.data.SettingDAO;
 import edu.univ.erp.domain.Role;
-import edu.univ.erp.domain.Setting;
 
 public class AccessControl {
     private static final SettingDAO settingDAO = new SettingDAO();

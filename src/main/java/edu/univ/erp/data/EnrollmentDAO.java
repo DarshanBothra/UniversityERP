@@ -88,4 +88,18 @@ public class EnrollmentDAO {
         }
         return false;
     }
+
+    public boolean isStudentEnrolledInSection(int studentId, int sectionId){
+        String sql = "SELECT * FROM enrollments WHERE student_id = ? AND section_id = ?";
+        try (Connection conn = DBConnection.getERPConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, studentId);
+            stmt.setInt(2, sectionId);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next(); // for non-empty result set => student is enrolled
+        } catch (SQLException e){
+            System.err.println("Error checking student enrollment: " + e.getMessage());
+        }
+        return false;
+    }
 }
