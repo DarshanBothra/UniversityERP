@@ -73,6 +73,22 @@ public class SectionDAO {
         return retList;
     }
 
+    public List<Section> getSectionsByInstructorId(int instructorId){
+        List<Section> retList = new ArrayList<Section>();
+        String sql = "SELECT * FROM sections where instructor_id = ?";
+        try (Connection conn = DBConnection.getERPConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, instructorId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                retList.add(mapResultToSection(rs));
+            }
+        } catch (SQLException e){
+            System.err.println("Error fetching sections: " + e.getMessage());
+        }
+        return retList;
+    }
+
     public boolean deleteSection(int sectionId){
         String sql = "DELETE FROM sections WHERE section_id = ?";
 

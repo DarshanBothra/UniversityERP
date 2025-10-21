@@ -69,20 +69,21 @@ public class GradeDAO {
         return retList;
     }
 
-    public Grade getGradeByEnrollmentId(int enrollmentId){
+    public List<Grade> getGradesByEnrollmentId(int enrollmentId){
         String sql = "SELECT * FROM grades WHERE enrollment_id = ?";
+        List<Grade> retList = new ArrayList<Grade>();
         try (Connection conn = DBConnection.getERPConnection();
         PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setInt(1, enrollmentId);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()){
-                return mapResultToGrade(rs);
+            while (rs.next()){
+                retList.add(mapResultToGrade(rs));
             }
         } catch (SQLException e){
             System.err.println("Error fetching grades: " + e.getMessage());
         }
 
-        return null;
+        return retList;
     }
 
     public boolean deleteGrade(int gradeId){

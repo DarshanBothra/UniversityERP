@@ -81,6 +81,23 @@ public class EnrollmentDAO {
         return retList;
     }
 
+    public List<Enrollment> getALlEnrollmentsForSection(int sectionId){
+        List<Enrollment> retList = new ArrayList<Enrollment>();
+        String sql = "SELECT * FROM enrollments WHERE section_id = ?";
+        try (Connection conn = DBConnection.getERPConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, sectionId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                retList.add(mapResultToEnrollment(rs));
+            }
+        } catch (SQLException e){
+            System.err.println("Error fetching enrollments for section: " + e.getMessage());
+        }
+
+        return retList;
+    }
+
     public boolean deleteEnrollment(int enrollmentId){
         String sql = "DELETE FROM enrollments WHERE enrollment_id = ?";
         try (Connection conn = DBConnection.getERPConnection();
