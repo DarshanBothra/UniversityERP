@@ -86,6 +86,21 @@ public class GradeDAO {
         return retList;
     }
 
+    public List<Grade> getGradesForSection(int sectionId){
+        String sql = "SELECT g.* FROM grades g JOIN enrollments e on g.enrollment_id = e.enrollment_id WHERE e.section_id = ? AND g.final_grade is NOT NULL";
+        List<Grade> retList = new ArrayList<Grade>();
+        try (Connection conn = DBConnection.getERPConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery()){
+            while (rs.next()){
+                retList.add(mapResultToGrade(rs));
+            }
+        } catch (SQLException e){
+            System.err.println("Error fetching grades for section: " + e.getMessage());
+        }
+        return retList;
+    }
+
     public boolean deleteGrade(int gradeId){
         String sql = "DELETE FROM grades WHERE grade_id = ?";
         try (Connection conn = DBConnection.getERPConnection();

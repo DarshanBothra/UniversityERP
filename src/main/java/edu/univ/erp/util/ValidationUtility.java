@@ -72,4 +72,8 @@ public class ValidationUtility {
         return false;
     }
 
+    public static boolean isValidScore(double score){
+        return (score >= 0) && (score <= 100);
+    }
+
 }

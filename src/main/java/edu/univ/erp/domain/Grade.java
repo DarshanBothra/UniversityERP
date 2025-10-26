@@ -16,6 +16,27 @@ public class Grade {
         this.final_grade = final_grade;
     }
 
+    public static double computeFinalGrade(double score, Component component){
+        // assuming the score is out of 100;
+        /**
+         * Rule for computing final grade:
+         * 1. QUIZ - 20
+         * 2. MIDSEM - 35
+         * 3. ENDSEM - 45
+         */
+
+        if (component == Component.QUIZ){
+            return score*0.2;
+        }
+        if (component == Component.MIDSEM){
+            return score*0.35;
+        }
+        if (component == Component.ENDSEM){
+            return score*0.45;
+        }
+        return -1;
+    }
+
     // setters
     public void setGradeId(int gradeId){
         this.gradeId = gradeId;
