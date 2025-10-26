@@ -1,6 +1,7 @@
 package edu.univ.erp.data;
 
 import edu.univ.erp.domain.Section;
+import edu.univ.erp.domain.SectionDetail;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,11 @@ public class SectionDAO {
         s.setSectionId(rs.getInt("section_id"));
 
         return s;
+    }
+
+    public SectionDetail mapResultToSectionDetail(ResultSet rs) throws SQLException{
+
+        return new SectionDetail(rs.getInt("section_id"), rs.getInt("course_id"), rs.getInt("instructor_id"), rs.getInt("capacity"), rs.getInt("current_year"), rs.getString("day_time"), rs.getString("room"), rs.getString("semester"), rs.getString("name"), rs.getString("code"), rs.getString("title"), rs.getInt("credits"), rs.getString("instructor_name"), rs.getString("department"));
     }
 
     public int insertSection(Section s){
@@ -85,6 +91,37 @@ public class SectionDAO {
             }
         } catch (SQLException e){
             System.err.println("Error fetching sections: " + e.getMessage());
+        }
+        return retList;
+    }
+
+    public List<Section> getSectionsByStudentId(int studentId){
+        String sql = " SELECT s.* FROM sections s JOIN enrollments e ON s.section_id = e.section_id WHERE e.student = ? AND e.status = 'Enrolled'";
+        List<Section> retList = new ArrayList<Section>();
+        try (Connection conn = DBConnection.getERPConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, studentId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                retList.add(mapResultToSection(rs));
+            }
+        } catch (SQLException e){
+            System.err.println("Error fetching section for student: " + e.getMessage());
+        }
+        return retList;
+    }
+
+    public List<SectionDetail> getAllSectionsWithDetails(){
+        String sql = "SELECT s.*, c.code, c.title, c.credits, i.name AS instructor_name, i.department FROM sections s JOIN courses c ON s.course_id = c.course_id JOIN instructors i ON s.instructor_id = i.instructor_id";
+        List<SectionDetail> retList = new ArrayList<SectionDetail>();
+        try (Connection conn = DBConnection.getERPConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                retList.add(mapResultToSectionDetail(rs));
+            }
+        } catch (SQLException e){
+            System.err.println("Error fetching sections with details: " + e.getMessage());
         }
         return retList;
     }
@@ -238,7 +275,6 @@ public class SectionDAO {
         return false;
 
     }
-
 
 
 }

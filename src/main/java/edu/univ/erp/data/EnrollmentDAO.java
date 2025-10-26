@@ -123,7 +123,7 @@ public class EnrollmentDAO {
         return false;
     }
 
-    public boolean isStudentEnrolledInSection(int studentId, int sectionId){
+    public boolean isAlreadyEnrolled(int studentId, int sectionId){
         String sql = "SELECT * FROM enrollments WHERE student_id = ? AND section_id = ?";
         try (Connection conn = DBConnection.getERPConnection();
         PreparedStatement stmt = conn.prepareStatement(sql)){

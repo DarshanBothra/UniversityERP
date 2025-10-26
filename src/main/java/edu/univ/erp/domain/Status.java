@@ -1,8 +1,8 @@
 package edu.univ.erp.domain;
 
 public enum Status {
-    ACTIVE("Active"),
-    INACTIVE("Inactive");
+    ENROLLED("Enrolled"),
+    DROPPED("Dropped");
 
     private final String dbValue;
 
@@ -20,7 +20,7 @@ public enum Status {
                 return s;
             }
         }
-        return ACTIVE;
+        return ENROLLED;
     }
 
     @Override
