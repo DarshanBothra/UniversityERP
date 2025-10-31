@@ -67,6 +67,10 @@ public class Section {
         return this.semester;
     }
 
+    public boolean isInstructorAssigned(){
+        return getInstructorId() != -1;
+    }
+
     // String Representation
     @Override
     public String toString(){

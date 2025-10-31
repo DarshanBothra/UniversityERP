@@ -4,7 +4,7 @@ CREATE TABLE users_auth(
     role ENUM('ADMIN', 'INSTRUCTOR', 'STUDENT') NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     status ENUM('ACTIVE', 'INACTIVE') DEFAULT 'INACTIVE',
-    last_login TIMESTAMP NULL
+    last_login TIMESTAMP DEFAULT NULL
     );
 
 

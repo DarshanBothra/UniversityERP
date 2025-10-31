@@ -2,12 +2,20 @@ package edu.univ.erp.auth.store;
 
 import edu.univ.erp.domain.LoginStatus;
 import edu.univ.erp.domain.Role;
+import edu.univ.erp.domain.User;
 import edu.univ.erp.data.DBConnection;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AuthStore {
 
     public AuthStore(){};
+
+    public User mapResultToUser(ResultSet rs) throws SQLException{
+        User u = new User(rs.getString("username"), Role.fromString(rs.getString("role")));
+        return u;
+    }
 
     public int insertUser(String username, Role role, String passwordHash){
         String sql = "INSERT INTO users_auth (username, role, password_hash) VALUES (?, ?, ?)";
@@ -181,6 +189,36 @@ public class AuthStore {
             System.err.println("Error deleting user: " + e.getMessage());
         }
         return false;
+    }
+
+    public User getUserByUsername(String username){
+        String sql = "SELECT * FROM users_auth WHERE username = ?";
+        try (Connection conn = DBConnection.getAuthConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()){
+                return mapResultToUser(rs);
+            }
+        } catch (SQLException e){
+            System.err.println("Error fetching user: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public List<User> getAllUsers(){
+        List<User> retList = new ArrayList<User>();
+        String sql = "SELECT * FROM users_auth";
+        try (Connection conn = DBConnection.getAuthConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery()){
+            while (rs.next()){
+                retList.add(mapResultToUser(rs));
+            }
+        } catch (SQLException e){
+            System.err.println("Error fetching users: " + e.getMessage());
+        }
+        return retList;
     }
 
 }
