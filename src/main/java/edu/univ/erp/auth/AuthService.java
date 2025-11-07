@@ -22,7 +22,9 @@ public class AuthService {
      * 4. hash the password
      * 5. insert (username, role, password hash) in table
      */
-
+    public boolean canLogin(String username){
+        return authStore.getFailedAttempts(username) < 5;
+    }
     public boolean registerUser(String username, String role, String plainPassword){
         if (authStore.userExists(username)){
             System.err.println("Registration Failed: User Already Exists.\n");
@@ -57,11 +59,22 @@ public class AuthService {
                 return false;
             }
             // user exists
+            if (!this.canLogin(username)){
+                System.err.println("5 Failed login attempts! Contact admin to reset login attempts.");
+                return false;
+            }
+            // user is allowed login
             if (!PasswordUtility.checkPassword(plainPassword, authStore.getPasswordHash(username))) {
                 System.err.println("Login Failed: Incorrect Password!");
+
+                // increment failed login attempts
+                authStore.incrementInvalidLogin(username);
                 return false;
             }
             // password is correct
+
+            // reset failed attempts
+            authStore.resetLoginAttempts(username);
 
             // fetch user attributes for session
             int userId = authStore.getUserId(username);

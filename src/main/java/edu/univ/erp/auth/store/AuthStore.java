@@ -166,6 +166,45 @@ public class AuthStore {
         return false;
     }
 
+    public boolean incrementInvalidLogin(String username){
+        String sql = "UPDATE users_auth SET failed_attempts = failed_attempts + 1 where username = ?";
+        try (Connection conn = DBConnection.getAuthConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, username);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e){
+            System.err.println("Error incrementing invalid login attempts: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean resetLoginAttempts(String username){
+        String sql = "UPDATE users_auth SET failed_attempts = 0 where username = ?";
+        try (Connection conn = DBConnection.getAuthConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, username);
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e){
+            System.err.println("Error resting login attempts: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public int getFailedAttempts(String username){
+        String sql = "SELECT * FROM users_auth WHERE username = ?";
+        try (Connection conn = DBConnection.getAuthConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);){
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()){
+                return rs.getInt("failed_attempts");
+            }
+        } catch (SQLException e){
+            System.err.println("Error fetching failed attempts: " + e.getMessage());
+        }
+        return -1;
+    }
     public boolean userExists(String username){
         String sql = "SELECT * FROM users_auth WHERE username = ?";
         try (Connection conn = DBConnection.getAuthConnection();

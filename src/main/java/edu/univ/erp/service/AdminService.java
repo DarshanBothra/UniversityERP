@@ -158,5 +158,8 @@ public class AdminService {
         return authStore.getAllUsers();
     }
 
+    public boolean resetLoginAttempts(String username){
+        return authStore.resetLoginAttempts(username);
+    }
 
 }
