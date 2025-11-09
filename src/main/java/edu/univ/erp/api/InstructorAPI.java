@@ -5,10 +5,6 @@ import edu.univ.erp.service.InstructorService;
 import java.util.List;
 import java.util.Map;
 
-/**
- * InstructorAPI acts as a mediator between the Swing UI and InstructorService layer.
- * Exposes simplified methods for instructor operations.
- */
 public class InstructorAPI {
 
     private final InstructorService instructorService;
@@ -17,9 +13,7 @@ public class InstructorAPI {
         this.instructorService = new InstructorService();
     }
 
-    /**
-     * Get instructor profile (for instructor dashboard).
-     */
+
     public Instructor getProfile(int instructorId) {
         try {
             return instructorService.getProfile(instructorId);
@@ -29,9 +23,6 @@ public class InstructorAPI {
         }
     }
 
-    /**
-     * Get all sections taught by the instructor.
-     */
     public List<SectionDetail> getInstructorSections(int instructorId) {
         try {
             return instructorService.getMySections(instructorId);
@@ -51,9 +42,6 @@ public class InstructorAPI {
         }
     }
 
-    /**
-     * Assign grade to a student in a section.
-     */
     public String enterScore(int instructorId, int enrollmentId, Component component, double score) {
         try {
             return instructorService.enterScore(instructorId, enrollmentId, component, score);
@@ -62,9 +50,7 @@ public class InstructorAPI {
         }
     }
 
-    /**
-     * Export section report (CSV).
-     */
+
     public boolean exportGrades(int instructorId, String filePath) {
         try {
             return instructorService.exportGrades(instructorId, filePath);
@@ -74,9 +60,6 @@ public class InstructorAPI {
         }
     }
 
-    /**
-     * Compute simple class statistics (average, median, mode) for a section.
-     */
     public Map<String, Double> getGradeStatistics(int sectionId) {
         try {
             return instructorService.getGradeStatistics(sectionId);
