@@ -57,3 +57,5 @@ CREATE TABLE settings(
 );
 
 INSERT INTO settings (setting_key, setting_value) VALUES ('maintenance_on', 'off');
+INSERT INTO settings (setting_key, setting_value) VALUES ('registration_deadline', '2025-12-31T23:59:59');
+INSERT INTO settings (setting_key, setting_value) VALUES ('drop_deadline', '2025-12-31T23:59:59');

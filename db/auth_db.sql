@@ -10,7 +10,7 @@ CREATE TABLE users_auth(
 
 
 INSERT INTO users_auth (username, role, password_hash) VALUES
-('admin1', 'ADMIN', '$2a$12$laxNOG915ok2sqfL.PA0Fed.4vIreE3TR19ZbJBTOpg58Z6KPNdnO'),
-('inst1', 'INSTRUCTOR', '$2a$12$RNMFwkhxipbsazLJbgzZiua/FS0WebyUdzuQflrSIRRDl4g9i5X0a'),
-('stu1', 'STUDENT', '$2a$12$3mfbviAn57XkY/uR17bK9utFiSG2GsCAgmJTDifqHrc8092exVuUq'),
-('stu2', 'STUDENT', '$2a$12$ldpgVKOvUCCpYak9jlXEqO/O0.AzhmT.WPK8cntomRYzSUEI6SGn2');
+('admin1', 'ADMIN', '$2a$10$1gmaS91lL.kL/RdSGjF74.rkmpZdwgjEYGz4vZF1TIBz15shjQzru'),
+('inst1', 'INSTRUCTOR', '$2a$10$WQdRjr85hAgbjyApOfWA1uobUIuFLgHQbN/ckvmxytsbCv/6PWLSS'),
+('stu1', 'STUDENT', '$2a$10$YxTOzDYnQ8KX75Ev85oKz.qusfd2v/Wx5xh7nT/QklDI6oS.riSXi'),
+('stu2', 'STUDENT', '$2a$10$lEsewOWwliWmntXnh8BtseINrBYbS3k/LW5R5X4xUpU7uGmJImuF6');

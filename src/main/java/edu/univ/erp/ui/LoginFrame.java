@@ -1,6 +1,7 @@
 package edu.univ.erp.ui;
 
-import edu.univ.erp.service.LoginService;
+import edu.univ.erp.auth.AuthService;
+import edu.univ.erp.auth.session.SessionUser;
 import edu.univ.erp.domain.Role;
 
 import javax.swing.*;
@@ -8,10 +9,10 @@ import java.awt.*;
 
 public class LoginFrame extends JFrame {
 
-    private final LoginService loginService;
+    private final AuthService loginService;
 
     public LoginFrame() {
-        this.loginService = new LoginService();
+        this.loginService = new AuthService();
 
         setTitle("ERP Login");
         setSize(400, 260);
@@ -43,7 +44,12 @@ public class LoginFrame extends JFrame {
             String username = userField.getText();
             String password = String.valueOf(passField.getPassword());
 
-            Role role = loginService.login(username, password);
+            boolean isLoggedIn = loginService.login(username, password);
+            if (!isLoggedIn){
+                System.out.println("Login failed!");
+                return;
+            }
+            Role role = loginService.getSessionUser().getRole();
 
             if (role == null) {
                 JOptionPane.showMessageDialog(this, "Invalid username or password");
