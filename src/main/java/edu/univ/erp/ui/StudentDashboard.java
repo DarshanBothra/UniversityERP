@@ -1,32 +1,34 @@
 package edu.univ.erp.ui;
 
-import edu.univ.erp.ui.common.MainFrame;
-import edu.univ.erp.ui.common.MenuBar;
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
-public class StudentDashboard extends JPanel {
-    public StudentDashboard(MainFrame frame) {
-        setLayout(new BorderLayout());
-        frame.setJMenuBar(new MenuBar(e -> frame.showScreen("login")));
+public class StudentDashboard extends JFrame {
 
-        JLabel title = new JLabel("Student Dashboard", SwingConstants.CENTER);
+    public StudentDashboard() {
+
+        setTitle("Student Dashboard");
+        setSize(600, 450);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLabel title = new JLabel("Welcome, Student", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 22));
 
-        JPanel buttons = new JPanel();
-        JButton registerCourse = new JButton("Register for Course");
-        JButton viewGrades = new JButton("View Grades");
-        buttons.add(registerCourse);
-        buttons.add(viewGrades);
+        JButton viewCatalog = new JButton("View Course Catalog");
+        JButton myRegs = new JButton("My Registrations");
+        JButton myGrades = new JButton("My Grades");
+        JButton transcript = new JButton("Generate Transcript");
 
-        add(title, BorderLayout.NORTH);
-        add(buttons, BorderLayout.CENTER);
+        JPanel panel = new JPanel(new GridLayout(5, 1, 10, 10));
+        panel.add(title);
+        panel.add(viewCatalog);
+        panel.add(myRegs);
+        panel.add(myGrades);
+        panel.add(transcript);
 
-        registerCourse.addActionListener(e ->
-            JOptionPane.showMessageDialog(this, "Course Registration coming soon...")
-        );
-        viewGrades.addActionListener(e ->
-            JOptionPane.showMessageDialog(this, "Grade Viewer coming soon...")
-        );
+        add(panel);
     }
 }
+
+

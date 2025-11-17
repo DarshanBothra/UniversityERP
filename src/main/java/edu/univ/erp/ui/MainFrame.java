@@ -2,49 +2,45 @@ package edu.univ.erp.ui;
 
 import javax.swing.*;
 import java.awt.*;
-import edu.univ.erp.ui.auth.LoginScreen;
-import edu.univ.erp.ui.auth.SignupScreen;
-import edu.univ.erp.ui.student.StudentDashboard;
-import edu.univ.erp.ui.instructor.InstructorDashboard;
-import edu.univ.erp.ui.admin.AdminDashboard;
 
 public class MainFrame extends JFrame {
-    private CardLayout cardLayout;
-    private JPanel mainPanel;
 
     public MainFrame() {
-        setTitle("University ERP System");
-        setSize(900, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        setTitle("ERP System - Main Frame");
+        setSize(600, 450);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        cardLayout = new CardLayout();
-        mainPanel = new JPanel(cardLayout);
+        // Add the menu bar
+        setJMenuBar(new ERPMenuBar());
 
-        // Add screens
-        LoginScreen login = new LoginScreen(this);
-        SignupScreen signup = new SignupScreen(this);
-        StudentDashboard studentDashboard = new StudentDashboard(this);
-        InstructorDashboard instructorDashboard = new InstructorDashboard(this);
-        AdminDashboard adminDashboard = new AdminDashboard(this);
+        // Title
+        JLabel title = new JLabel("University ERP System", SwingConstants.CENTER);
+        title.setFont(new Font("Arial", Font.BOLD, 26));
+        title.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 
-        mainPanel.add(login, "login");
-        mainPanel.add(signup, "signup");
-        mainPanel.add(studentDashboard, "student");
-        mainPanel.add(instructorDashboard, "instructor");
-        mainPanel.add(adminDashboard, "admin");
+        // Buttons
+        JButton adminBtn = new JButton("Admin Dashboard");
+        JButton instructorBtn = new JButton("Instructor Dashboard");
+        JButton studentBtn = new JButton("Student Dashboard");
 
-        add(mainPanel);
-        showScreen("login");
-    }
+        adminBtn.addActionListener(e -> new AdminDashboard().setVisible(true));
+        instructorBtn.addActionListener(e -> new InstructorDashboard().setVisible(true));
+        studentBtn.addActionListener(e -> new StudentDashboard().setVisible(true));
 
-    public void showScreen(String name) {
-        cardLayout.show(mainPanel, name);
-    }
+        // Layout panel
+        JPanel panel = new JPanel(new GridLayout(3, 1, 15, 15));
+        panel.add(adminBtn);
+        panel.add(instructorBtn);
+        panel.add(studentBtn);
+        panel.setBorder(BorderFactory.createEmptyBorder(0, 60, 60, 60));
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new MainFrame().setVisible(true);
-        });
+        // Add components
+        setLayout(new BorderLayout());
+        add(title, BorderLayout.NORTH);
+        add(panel, BorderLayout.CENTER);
     }
 }
+
+

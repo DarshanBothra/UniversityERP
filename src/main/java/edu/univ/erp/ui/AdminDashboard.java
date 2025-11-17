@@ -2,31 +2,28 @@ package edu.univ.erp.ui;
 
 import javax.swing.*;
 import java.awt.*;
-import edu.univ.erp.ui.common.MainFrame;
-import edu.univ.erp.ui.common.MenuBar;
 
-public class AdminDashboard extends JPanel {
-    public AdminDashboard(MainFrame frame) {
-        setLayout(new BorderLayout());
-        frame.setJMenuBar(new MenuBar(e -> frame.showScreen("login")));
+public class AdminDashboard extends JFrame {
 
-        JLabel title = new JLabel("Admin Dashboard", SwingConstants.CENTER);
+    public AdminDashboard() {
+        setTitle("Admin Dashboard");
+        setSize(600, 400);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLabel title = new JLabel("Welcome, Admin", SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 22));
 
-        JPanel buttons = new JPanel();
-        JButton manageUsers = new JButton("Manage Users");
-        JButton settings = new JButton("Settings");
-        buttons.add(manageUsers);
-        buttons.add(settings);
+        JButton userMgmt = new JButton("Manage Users");
+        JButton courseMgmt = new JButton("Manage Courses");
+        JButton sectionMgmt = new JButton("Manage Sections");
 
-        add(title, BorderLayout.NORTH);
-        add(buttons, BorderLayout.CENTER);
+        JPanel panel = new JPanel(new GridLayout(4, 1, 10, 10));
+        panel.add(title);
+        panel.add(userMgmt);
+        panel.add(courseMgmt);
+        panel.add(sectionMgmt);
 
-        manageUsers.addActionListener(e ->
-            JOptionPane.showMessageDialog(this, "User Management coming soon...")
-        );
-        settings.addActionListener(e ->
-            JOptionPane.showMessageDialog(this, "Settings Panel coming soon...")
-        );
+        add(panel);
     }
 }
