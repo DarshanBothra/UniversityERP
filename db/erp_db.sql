@@ -1,3 +1,9 @@
+DROP DATABASE IF EXISTS erp_db;
+
+CREATE DATABASE erp_db;
+
+USE erp_db;
+
 CREATE TABLE students(
     user_id INT PRIMARY KEY, -- fetch from db/auth_db.users_auth table after creating entry
     student_id INT AUTO_INCREMENT,
