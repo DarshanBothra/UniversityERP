@@ -8,6 +8,7 @@ import edu.univ.erp.auth.hash.PasswordUtility;
 import edu.univ.erp.access.MaintenanceManager;
 import edu.univ.erp.util.ValidationUtility;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -162,4 +163,13 @@ public class AdminService {
         return authStore.resetLoginAttempts(username);
     }
 
+    public boolean setRegistrationDeadline(LocalDateTime deadline){
+        String deadlineString = deadline.toString();
+        return settingDAO.updateSetting("registration_deadline", deadlineString);
+    }
+
+    public boolean setDropDeadline(LocalDateTime deadline){
+        String deadlineString = deadline.toString();
+        return settingDAO.updateSetting("drop_deadline", deadlineString);
+    }
 }
