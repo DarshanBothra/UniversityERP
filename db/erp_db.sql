@@ -5,8 +5,8 @@ CREATE DATABASE erp_db;
 USE erp_db;
 
 CREATE TABLE students(
-    user_id INT PRIMARY KEY, -- fetch from db/auth_db.users_auth table after creating entry
-    student_id INT AUTO_INCREMENT,
+    user_id INT UNIQUE NOT NULL, -- fetch from db/auth_db.users_auth table after creating entry
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE, -- fetch from db/auth_db.users_auth table after creating entry
     roll_no INT NOT NULL UNIQUE,
@@ -15,8 +15,8 @@ CREATE TABLE students(
 );
 
 CREATE TABLE instructors(
-    user_id INT PRIMARY KEY, -- fetch from db/auth_db.users_auth table after creating entry
-    instructor_id INT AUTO_INCREMENT,
+    user_id INT UNIQUE NOT NULL, -- fetch from db/auth_db.users_auth table after creating entry
+    instructor_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE, -- fetch from db/auth_db.users_auth table after creating entry
     department VARCHAR(10) NOT NULL
@@ -166,3 +166,10 @@ INSERT INTO courses (code, title, credits) VALUES ('RDN784', 'Rlkqee Dktvg Nzeox
 INSERT INTO courses (code, title, credits) VALUES ('OFK759', 'Okwsys Fsxmwc Kzacse ', 2);
 INSERT INTO courses (code, title, credits) VALUES ('KFT358', 'Kdxcip Fgww Tizh ', 1);
 INSERT INTO courses (code, title, credits) VALUES ('IHT380', 'Ipln Hntsu Tphiat ', 2);
+
+INSERT INTO students(user_id, name, username, roll_no, program, current_year) VALUES (3, 'Jack Baker', 'stu1', 2001000, 'B.Tech', 2023);
+INSERT INTO students(user_id, name, username, roll_no, program, current_year) VALUES (4, 'Dexter Morgan', 'stu2', 2004000, 'M.Tech', 2025);
+
+INSERT INTO instructors (user_id, name, username, department) VALUES (2, 'Hector Munday', 'inst1', 'ECE');
+
+
