@@ -5,6 +5,7 @@ import edu.univ.erp.domain.*;
 import edu.univ.erp.service.AdminService;
 import edu.univ.erp.util.ValidationUtility;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -103,6 +104,14 @@ public class AdminAPI {
             System.err.println("Error resting login attempts: " + e.getMessage());
             return false;
         }
+    }
+
+    public boolean setRegistrationDeadline(LocalDateTime deadline){
+        return adminService.setRegistrationDeadline(deadline);
+    }
+
+    public boolean setDropDeadline(LocalDateTime deadline){
+        return adminService.setDropDeadline(deadline);
     }
 
 }
