@@ -1,17 +1,19 @@
+package edu.univ.erp.ui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+
+import edu.univ.erp.domain.Student;
 import edu.univ.erp.service.StudentService;
 
 public class DownloadTranscriptFrame extends JFrame {
 
     private final int studentId;
-    private final StudentService studentService;
+    private final StudentService studentService = new StudentService();
 
     public DownloadTranscriptFrame(int studentId, StudentService studentService) {
         this.studentId = studentId;
-        this.studentService = studentService;
 
         setTitle("Download Transcript");
         setSize(600, 300);
@@ -56,9 +58,8 @@ public class DownloadTranscriptFrame extends JFrame {
             if (!path.endsWith(".csv")) {
                 path += ".csv";
             }
-
-            boolean ok = studentService.generateTranscript(studentId, path);
-
+            boolean ok = studentService.generateTranscript(studentId, path.substring(0, path.length()-4));
+            System.out.println(ok);
             if (ok) {
                 JOptionPane.showMessageDialog(this, "Transcript saved successfully!");
             } else {

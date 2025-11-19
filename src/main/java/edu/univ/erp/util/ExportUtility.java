@@ -60,7 +60,7 @@ public class ExportUtility {
 
             }
 
-
+            return true;
         } catch (IOException e){
             System.err.println("Error exporting student transcript to file: " + e.getMessage());
         } catch (Exception e){
