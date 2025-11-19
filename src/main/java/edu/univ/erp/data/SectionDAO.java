@@ -64,6 +64,21 @@ public class SectionDAO {
         return null;
     }
 
+    public Section getSectionByCourseId(int courseId){
+        String sql = "SELECT * FROM sections WHERE course_id = ?";
+        try (Connection conn = DBConnection.getERPConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, courseId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()){
+                return mapResultToSection(rs);
+            }
+        } catch (SQLException e){
+            System.err.println("Error fetching section: " + e.getMessage());
+        }
+        return null;
+    }
+
     public List<Section> getAllSections(){
         String sql = "SELECT * FROM sections";
         List<Section> retList = new ArrayList<Section>();
@@ -274,6 +289,10 @@ public class SectionDAO {
         }
         return false;
 
+    }
+
+    public int getCourseId(int sectionId){
+        return getCourseId(sectionId);
     }
 
 

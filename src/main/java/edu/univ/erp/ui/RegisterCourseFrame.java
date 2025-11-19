@@ -1,4 +1,9 @@
 package edu.univ.erp.ui;
+import edu.univ.erp.api.StudentAPI;
+import edu.univ.erp.data.SectionDAO;
+import edu.univ.erp.domain.Course;
+import edu.univ.erp.domain.SectionDetail;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -12,7 +17,7 @@ public class RegisterCourseFrame extends JFrame {
     private JTable courseTable;
     private DefaultTableModel model;
 
-    public RegisterCourseFrame(StudentDAO studentDAO, int studentId) {
+    public RegisterCourseFrame(StudentAPI studentAPI, int studentId) {
 
         setTitle("Register for a Course");
         setSize(900, 550);   // SAME SIZE AS DASHBOARD
@@ -71,7 +76,7 @@ public class RegisterCourseFrame extends JFrame {
         add(bottomPanel, BorderLayout.SOUTH);
 
         // ===== LOAD AVAILABLE COURSES =====
-        loadAvailableCourses(studentDAO, studentId);
+        loadAvailableCourses(studentAPI);
 
         // ===== BUTTON ACTION =====
         registerBtn.addActionListener(new ActionListener() {
@@ -93,7 +98,8 @@ public class RegisterCourseFrame extends JFrame {
                 int courseId = (int) model.getValueAt(selectedRow, 0);
 
                 try {
-                    studentDAO.registerCourse(studentId, courseId);
+                    SectionDAO sectionDAO = new SectionDAO();
+                    studentAPI.registerSection(studentId, sectionDAO.getSectionByCourseId(courseId).getSectionId());
 
                     JOptionPane.showMessageDialog(
                             RegisterCourseFrame.this,
@@ -103,7 +109,7 @@ public class RegisterCourseFrame extends JFrame {
                     );
 
                     // Refresh table
-                    loadAvailableCourses(studentDAO, studentId);
+                    loadAvailableCourses(studentAPI);
 
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(
@@ -119,18 +125,18 @@ public class RegisterCourseFrame extends JFrame {
         setVisible(true);
     }
 
-    private void loadAvailableCourses(StudentDAO studentDAO, int studentId) {
+    private void loadAvailableCourses(StudentAPI studentAPI) {
         try {
-            List<Course> availableCourses = studentDAO.getAvailableCourses(studentId);
+            List<SectionDetail> availableCourses = studentAPI.getCatalog();
 
             model.setRowCount(0); // clear table
 
-            for (Course c : availableCourses) {
+            for (SectionDetail s : availableCourses) {
                 model.addRow(new Object[]{
-                        c.getCourseId(),
-                        c.getCourseName(),
-                        c.getInstructorName(),
-                        c.getCredits()
+                        s.getCourseCode(),
+                        s.getCourseTitle(),
+                        s.getInstructorName(),
+                        s.getCourseCredits()
                 });
             }
 

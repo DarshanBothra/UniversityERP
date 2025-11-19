@@ -3,6 +3,12 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
+
+import edu.univ.erp.data.CourseDAO;
+import edu.univ.erp.data.EnrollmentDAO;
+import edu.univ.erp.data.GradeDAO;
+import edu.univ.erp.data.SectionDAO;
+import edu.univ.erp.domain.Course;
 import edu.univ.erp.service.StudentService;
 import edu.univ.erp.domain.Grade;
 
@@ -45,13 +51,17 @@ public class ViewGradesFrame extends JFrame {
 
     private void loadGrades(DefaultTableModel model) {
         List<Grade> gradeList = studentService.getMyGrades(studentId);
-
+        CourseDAO courseDAO = new CourseDAO();
+        EnrollmentDAO enrollmentDAO = new EnrollmentDAO();
+        SectionDAO sectionDAO = new SectionDAO();
         for (Grade g : gradeList) {
+            int sectionId = enrollmentDAO.getEnrollmentById(g.getEnrollmentId()).getSectionId();
+            Course c = courseDAO.getCourseById(sectionDAO.getCourseId(sectionId));
             model.addRow(new Object[]{
-                    g.getCourseCode(),
-                    g.getCourseTitle(),
-                    g.getLetterGrade(),
-                    g.getSemester()
+                    c.getCode(),
+                    c.getTitle(),
+                    g.getFinalGrade(),
+                    sectionDAO.getSectionById(sectionId).getSemester()
             });
         }
     }
