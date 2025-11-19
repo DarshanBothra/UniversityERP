@@ -266,14 +266,14 @@ public class StudentDashboard extends JFrame {
 
         // bottom: register quick form
         JPanel bottom = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        bottom.setBackground(cardBg);
-        JTextField secIdField = new JTextField(8);
+        //bottom.setBackground(cardBg);
+        //JTextField secIdField = new JTextField(8);
         JButton registerBtn = new JButton("Register");
         registerBtn.setBackground(primary);
         registerBtn.setForeground(Color.WHITE);
-        bottom.add(new JLabel("Section ID:"));
-        bottom.add(secIdField);
-        bottom.add(registerBtn);
+        //bottom.add(new JLabel("Section ID:"));
+        //bottom.add(secIdField);
+        //bottom.add(registerBtn);
 
         registerBtn.addActionListener(e -> {
             String txt = secIdField.getText().trim();
