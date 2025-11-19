@@ -8,11 +8,11 @@ import java.util.List;
 public class SettingDAO {
 
     public Setting mapResultToSetting(ResultSet rs) throws SQLException {
-        return new Setting(rs.getString("key"), rs.getString("value"));
+        return new Setting(rs.getString("setting_key"), rs.getString("setting_value"));
     }
 
     public boolean insertSetting(Setting s){
-        String sql = "INSERT INTO settings (key, value) VALUES (?, ?)";
+        String sql = "INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)";
         try (Connection conn = DBConnection.getERPConnection();
         PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, s.getKey());
@@ -25,7 +25,7 @@ public class SettingDAO {
     }
 
     public Setting getSettingByKey(String key){
-        String sql = "SELECT * FROM settings WHERE key = ?";
+        String sql = "SELECT * FROM settings WHERE setting_key = ?";
         try (Connection conn = DBConnection.getERPConnection();
         PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, key);
@@ -55,7 +55,7 @@ public class SettingDAO {
     }
 
     public boolean deleteSetting(String key){
-        String sql = "DELETE FROM settings WHERE key = ?";
+        String sql = "DELETE FROM settings WHERE setting_key = ?";
         try (Connection conn = DBConnection.getERPConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, key);
@@ -67,7 +67,7 @@ public class SettingDAO {
     }
 
     public boolean updateSetting(String key, String value){
-        String sql = "UPDATE setting SET value = ? WHERE key = ?";
+        String sql = "UPDATE setting SET setting_value = ? WHERE key = ?";
         try (Connection conn = DBConnection.getERPConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, value);

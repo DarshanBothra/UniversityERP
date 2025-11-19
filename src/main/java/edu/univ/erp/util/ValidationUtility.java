@@ -29,7 +29,7 @@ public class ValidationUtility {
     }
 
     public static boolean isDuplicateEnrollment(int studentId, int sectionId){
-        return !enrollmentDAO.isAlreadyEnrolled(studentId, sectionId);
+        return enrollmentDAO.isAlreadyEnrolled(studentId, sectionId);
     }
 
     public static boolean isBeforeDeadline(LocalDateTime deadline){

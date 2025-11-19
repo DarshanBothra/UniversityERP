@@ -24,9 +24,11 @@ public class EnrollmentDAO {
             int affected = stmt.executeUpdate();
             if (affected > 0){
                 ResultSet rs = stmt.getGeneratedKeys();
-                int enrollmentId = rs.getInt(1);
-                e.setEnrollmentId(enrollmentId);
-                return enrollmentId;
+                if (rs.next()){
+                    int enrollmentId = rs.getInt(1);
+                    e.setEnrollmentId(enrollmentId);
+                    return enrollmentId;
+                }
             }
         } catch (SQLException exc){
             System.err.println("Error inserting enrollment: " + exc.getMessage());
@@ -130,7 +132,8 @@ public class EnrollmentDAO {
             stmt.setInt(1, studentId);
             stmt.setInt(2, sectionId);
             ResultSet rs = stmt.executeQuery();
-            return rs.next(); // for non-empty result set => student is enrolled
+            boolean result =  rs.next();
+            return result;// for non-empty result set => student is enrolled
         } catch (SQLException e){
             System.err.println("Error checking student enrollment: " + e.getMessage());
         }
