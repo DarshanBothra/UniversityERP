@@ -49,11 +49,11 @@ public class StudentDAO {
         return -1; // student was not inserted
     }
 
-    public Student getStudentById(int studentId){
-        String sql = "SELECT * FROM students WHERE student_id = ?";
+    public Student getStudentById(int user_id){
+        String sql = "SELECT * FROM students WHERE user_id = ?";
         try(Connection conn = DBConnection.getERPConnection();
         PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setInt(1, studentId);
+            stmt.setInt(1, user_id);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()){

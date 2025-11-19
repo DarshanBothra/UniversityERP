@@ -2,6 +2,7 @@ package edu.univ.erp.ui;
 
 import edu.univ.erp.auth.session.SessionManager;
 import edu.univ.erp.auth.session.SessionUser;
+import edu.univ.erp.data.StudentDAO;
 import edu.univ.erp.domain.Grade;
 import edu.univ.erp.domain.SectionDetail;
 import edu.univ.erp.domain.Student;
@@ -17,7 +18,8 @@ import java.util.List;
 public class StudentDashboard extends JFrame {
 
     private final StudentService studentService = new StudentService();
-    private final int studentId;
+    private final StudentDAO studentDAO = new StudentDAO();
+    private int studentId = studentDAO.getStudentById(SessionManager.getActiveSession().getUserId()).getStudentId();
 
     // theme colors (blue theme to match login)
     private final Color bg = new Color(240, 244, 249);
@@ -655,8 +657,8 @@ public class StudentDashboard extends JFrame {
             lblName.setText("Name: " + s.getName());
             lblEmail.setText("Email: " + s.getUsername());
             lblProgram.setText("Program: " + (s.getProgram() != null ? s.getProgram().toString() : "-"));
-            lblYear.setText("Year: " + s.getSemester());
-            lblStatus.setText("Status: " + s.getStatus());
+            lblYear.setText("Year: " + s.getCurrentYear());
+            lblStatus.setText("Status: ACTIVE" );
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Failed to load profile: " + e.getMessage());
         }

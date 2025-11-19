@@ -1,5 +1,8 @@
 package edu.univ.erp.ui;
 
+import edu.univ.erp.api.StudentAPI;
+import edu.univ.erp.domain.SectionDetail;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -11,7 +14,7 @@ public class ViewEnrolledCoursesFrame extends JFrame {
     private JTable table;
     private DefaultTableModel model;
 
-    public ViewEnrolledCoursesFrame(StudentDAO studentDAO, int studentId) {
+    public ViewEnrolledCoursesFrame(StudentAPI studentAPI, int studentId) {
         setTitle("View Enrolled Courses");
         setSize(900, 550);   // SAME SIZE AS DASHBOARD
         setLocationRelativeTo(null);
@@ -56,23 +59,23 @@ public class ViewEnrolledCoursesFrame extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
 
         // ===== LOAD DATA =====
-        loadEnrolledCourses(studentDAO, studentId);
+        loadEnrolledCourses(studentAPI, studentId);
 
         setVisible(true);
     }
 
-    private void loadEnrolledCourses(StudentDAO studentDAO, int studentId) {
+    private void loadEnrolledCourses(StudentAPI studentAPI, int studentId) {
         try {
-            List<Course> courseList = studentDAO.getEnrolledCourses(studentId);
+            List<SectionDetail> courseList = studentAPI.getMyRegistrations(studentId);
 
             model.setRowCount(0); // clear table first
 
-            for (Course c : courseList) {
+            for (SectionDetail s : courseList) {
                 model.addRow(new Object[]{
-                        c.getCourseId(),
-                        c.getCourseName(),
-                        c.getInstructorName(),
-                        c.getCredits()
+                        s.getCourseId(),
+                        s.getCourseTitle(),
+                        s.getInstructorName(),
+                        s.getCourseCredits()
                 });
             }
 

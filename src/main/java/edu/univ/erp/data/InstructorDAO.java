@@ -42,11 +42,11 @@ public class InstructorDAO {
         return -1; // instructor was not inserted
     }
 
-    public Instructor getInstructorById(int instructorId){
-        String sql = "SELECT * FROM instructors WHERE instructor_id = ?";
+    public Instructor getInstructorById(int userId){
+        String sql = "SELECT * FROM instructors WHERE user_id = ?";
         try(Connection conn = DBConnection.getERPConnection();
         PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setInt(1, instructorId);
+            stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()){
                 return mapResultToInstructorSet(rs);

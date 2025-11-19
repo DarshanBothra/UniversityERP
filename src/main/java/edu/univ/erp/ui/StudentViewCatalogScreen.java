@@ -1,5 +1,7 @@
 package edu.univ.erp.ui;
 
+import edu.univ.erp.auth.session.SessionManager;
+import edu.univ.erp.data.StudentDAO;
 import edu.univ.erp.domain.SectionDetail;
 import edu.univ.erp.service.StudentService;
 
@@ -10,12 +12,13 @@ import java.util.List;
 
 public class StudentViewCatalogScreen extends JFrame {
 
-    private final StudentService studentService;
-    private final int studentId;
+    private final StudentService studentService = new StudentService();
+    private final StudentDAO studentDAO = new StudentDAO();
+    private final int studentId = studentDAO.getStudentById(SessionManager.getActiveSession().getUserId()).getStudentId();
 
     public StudentViewCatalogScreen(int studentId) {
-        this.studentId = studentId;
-        this.studentService = new StudentService();
+//        this.studentId = studentId;
+//        this.studentService = new StudentService();
 
         setTitle("Course Catalogue");
         setSize(900, 600);
@@ -42,6 +45,7 @@ public class StudentViewCatalogScreen extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
 
         loadCatalog(model);
+
         setVisible(true);
     }
 
