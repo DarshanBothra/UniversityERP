@@ -1,5 +1,6 @@
 package edu.univ.erp.ui;
 
+import edu.univ.erp.auth.AuthService;
 import edu.univ.erp.auth.session.SessionManager;
 import edu.univ.erp.auth.session.SessionUser;
 
@@ -151,7 +152,8 @@ public class AdminDashboard extends JFrame {
         });
 
         btnLogout.addActionListener(e -> {
-            SessionManager.clearSession();
+            AuthService authService = new AuthService();
+            authService.logout();
             dispose();
             // reuse LoginFrame class from UI package
             new LoginFrame().setVisible(true);

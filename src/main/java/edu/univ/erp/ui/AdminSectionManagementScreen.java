@@ -19,8 +19,8 @@ import java.util.List;
 public class AdminSectionManagementScreen extends JFrame {
 
     private final AdminService adminService = new AdminService();
-    private final DefaultTableModel sectionModel;
-    private final JTable sectionTable;
+    private DefaultTableModel sectionModel;
+    private JTable sectionTable;
 
     // create fields
     private final JTextField txtCourseId = new JTextField(6);

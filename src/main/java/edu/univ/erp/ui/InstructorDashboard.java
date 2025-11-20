@@ -1,5 +1,6 @@
 package edu.univ.erp.ui;
 
+import edu.univ.erp.auth.AuthService;
 import edu.univ.erp.auth.session.SessionManager;
 import edu.univ.erp.auth.session.SessionUser;
 import edu.univ.erp.service.InstructorService;
@@ -100,7 +101,8 @@ public class InstructorDashboard extends JFrame {
         );
 
         btnLogout.addActionListener(e -> {
-            SessionManager.clearSession();
+            AuthService authService = new AuthService();
+            authService.logout();
             JOptionPane.showMessageDialog(this, "Logged Out Successfully!");
             dispose();
         });

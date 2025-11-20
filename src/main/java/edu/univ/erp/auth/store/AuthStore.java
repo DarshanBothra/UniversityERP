@@ -91,7 +91,7 @@ public class AuthStore {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()){
-                return LoginStatus.fromString(rs.getString("user_id"));
+                return LoginStatus.fromString(rs.getString("status"));
             }
         } catch (SQLException e){
             System.err.println("Error fetching user status: " + e.getMessage());
@@ -105,8 +105,8 @@ public class AuthStore {
         PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
-            if (rs.last()){
-                return rs.getTimestamp("last_login");
+            if (rs.next()){
+                return rs.getTimestamp(1);
             }
         } catch (SQLException e){
             System.err.println("Error fetching last login timestamp: " + e.getMessage());
