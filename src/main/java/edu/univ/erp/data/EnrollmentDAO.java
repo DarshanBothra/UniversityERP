@@ -83,7 +83,7 @@ public class EnrollmentDAO {
         return retList;
     }
 
-    public List<Enrollment> getALlEnrollmentsForSection(int sectionId){
+    public List<Enrollment> getAllEnrollmentsForSection(int sectionId){
         List<Enrollment> retList = new ArrayList<Enrollment>();
         String sql = "SELECT * FROM enrollments WHERE section_id = ?";
         try (Connection conn = DBConnection.getERPConnection();

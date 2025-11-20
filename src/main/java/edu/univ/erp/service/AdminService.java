@@ -38,7 +38,7 @@ public class AdminService {
 
             String hashedPassword = PasswordUtility.hashPassword(plainPassword);
             int userId = authStore.insertUser(username, role, hashedPassword);
-
+            System.out.println("User Id: " + userId);
             if (role == Role.STUDENT){
                 Student s = new Student(userId, name, username, rollOrNull, Program.fromString(departmentOrProgram), yearOrNull);
                 studentDAO.insertStudent(s);

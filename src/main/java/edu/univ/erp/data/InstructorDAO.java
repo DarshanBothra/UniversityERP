@@ -28,7 +28,7 @@ public class InstructorDAO {
             if (affected > 0){ // instructor was inserted successfully
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()){
-                    int instructorId = rs.getInt(2);
+                    int instructorId = rs.getInt(1);
                     i.setInstructorId(instructorId);
                     return instructorId;
                 }

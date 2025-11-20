@@ -1,5 +1,6 @@
 package edu.univ.erp.ui;
 
+import edu.univ.erp.data.InstructorDAO;
 import edu.univ.erp.domain.Instructor;
 import edu.univ.erp.service.InstructorService;
 import edu.univ.erp.auth.session.SessionManager;
@@ -20,7 +21,8 @@ public class InstructorProfileScreen extends JFrame {
 
     public InstructorProfileScreen() {
         SessionUser u = SessionManager.getActiveSession();
-        this.instructorId = u == null ? -1 : u.getUserId();
+        InstructorDAO instructorDAO = new InstructorDAO();
+        this.instructorId = u == null ? -1 : instructorDAO.getInstructorById(u.getUserId()).getInstructorId();
 
         setTitle("My Profile");
         setSize(700, 380);

@@ -180,8 +180,8 @@ public class AdminUserManagementScreen extends JFrame {
                 String username = u.getUserId();
                 LoginStatus status = adminService.authStore.getCurrentStatus(username);
                 userModel.addRow(new Object[]{
-                        username,
                         adminService.authStore.getUserId(username),
+                        username,
                         u.getRole().name(),
                         status == null ? "-" : status.toString(),
                         adminService.authStore.getLastLogin(username) == null ? "-" : adminService.authStore.getLastLogin(username)
@@ -239,6 +239,7 @@ public class AdminUserManagementScreen extends JFrame {
             return;
         }
         String username = String.valueOf(userModel.getValueAt(r, 1));
+        System.out.println(username);
         int confirm = JOptionPane.showConfirmDialog(this, "Delete user '" + username + "' ?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
         if (confirm != JOptionPane.YES_OPTION) return;
         boolean ok = adminService.deleteUser(username);

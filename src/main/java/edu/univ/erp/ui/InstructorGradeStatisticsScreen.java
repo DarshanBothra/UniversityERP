@@ -1,5 +1,6 @@
 package edu.univ.erp.ui;
 
+import edu.univ.erp.data.InstructorDAO;
 import edu.univ.erp.service.InstructorService;
 import edu.univ.erp.auth.session.SessionManager;
 import edu.univ.erp.auth.session.SessionUser;
@@ -19,7 +20,8 @@ public class InstructorGradeStatisticsScreen extends JFrame {
 
     public InstructorGradeStatisticsScreen() {
         SessionUser u = SessionManager.getActiveSession();
-        this.instructorId = u == null ? -1 : u.getUserId();
+        InstructorDAO instructorDAO = new InstructorDAO();
+        this.instructorId = u == null ? -1 : instructorDAO.getInstructorById(u.getUserId()).getInstructorId();
 
         setTitle("Grade Statistics");
         setSize(600, 320);

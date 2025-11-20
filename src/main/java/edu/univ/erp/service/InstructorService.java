@@ -39,7 +39,7 @@ public class InstructorService {
         List<Enrollment> retList = new ArrayList<Enrollment>();
         List<Section> sections = sectionDAO.getSectionsByInstructorId(instructorId);
         for (Section s: sections){
-            retList.addAll(enrollmentDAO.getALlEnrollmentsForSection(s.getSectionId()));
+            retList.addAll(enrollmentDAO.getAllEnrollmentsForSection(s.getSectionId()));
         }
         return retList;
     }

@@ -28,9 +28,11 @@ public class CourseDAO {
             int affected = stmt.executeUpdate();
             if (affected > 0){
                 ResultSet rs = stmt.getGeneratedKeys();
-                int courseId = rs.getInt(1);
-                c.setCourseId(courseId);
-                return courseId;
+                if (rs.next()){
+                    int courseId = rs.getInt(1);
+                    c.setCourseId(courseId);
+                    return courseId;
+                }
             }
 
         } catch (SQLException e){
