@@ -104,8 +104,12 @@ public class InstructorDashboard extends JFrame {
             AuthService authService = new AuthService();
             authService.logout();
             JOptionPane.showMessageDialog(this, "Logged Out Successfully!");
+
             dispose();
+            new LoginFrame().setVisible(true);   // <-- added to return to login screen
         });
+
+    });
     }
 
     private JButton createMenuButton(String text) {
