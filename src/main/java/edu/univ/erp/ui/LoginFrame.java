@@ -34,9 +34,16 @@ public class LoginFrame extends JFrame {
         passField.setBackground(fieldColor);
 
         JButton loginBtn = new JButton("Login");
-        loginBtn.setBackground(new Color(40, 120, 220));
-        loginBtn.setForeground(Color.WHITE);
+
+        // --- ✔ Updated styling (white background, black text, real button look) ---
+        loginBtn.setBackground(Color.WHITE);
+        loginBtn.setForeground(Color.BLACK);
         loginBtn.setFocusPainted(false);
+        loginBtn.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        loginBtn.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        loginBtn.setPreferredSize(new Dimension(110, 35));
+        loginBtn.setOpaque(true);
+        // -------------------------------------------------------------------------
 
         panel.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
 
