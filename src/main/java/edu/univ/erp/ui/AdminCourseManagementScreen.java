@@ -20,13 +20,17 @@ public class AdminCourseManagementScreen extends JFrame {
     private DefaultTableModel courseModel;
     private JTable courseTable;
 
-    private final JTextField txtCode = new JTextField(8);
-    private final JTextField txtTitle = new JTextField(12);
-    private final JTextField txtCredits = new JTextField(4);
+    // INPUT FIELD COLOR FIX
+    private final Color fieldBg = new Color(242, 242, 242); // light grey
+    private final Color fieldFg = Color.BLACK;
 
-    private final JTextField editCourseIdField = new JTextField(6);
-    private final JTextField editTitleField = new JTextField(12);
-    private final JTextField editCreditsField = new JTextField(4);
+    private final JTextField txtCode = createField(8);
+    private final JTextField txtTitle = createField(12);
+    private final JTextField txtCredits = createField(4);
+
+    private final JTextField editCourseIdField = createField(6);
+    private final JTextField editTitleField = createField(12);
+    private final JTextField editCreditsField = createField(4);
 
     public AdminCourseManagementScreen() {
         setTitle("Admin — Course Management");
@@ -58,6 +62,14 @@ public class AdminCourseManagementScreen extends JFrame {
 
         loadCourses();
         setVisible(true);
+    }
+
+    // ---- Helper to apply colors to all fields ----
+    private JTextField createField(int size) {
+        JTextField f = new JTextField(size);
+        f.setBackground(fieldBg);
+        f.setForeground(fieldFg);
+        return f;
     }
 
     private JPanel buildCreatePanel() {
@@ -129,7 +141,7 @@ public class AdminCourseManagementScreen extends JFrame {
     private void loadCourses() {
         try {
             courseModel.setRowCount(0);
-            List<Course> list = adminService.courseDAO.getAllCourses(); // courseDAO is public in AdminService
+            List<Course> list = adminService.courseDAO.getAllCourses();
             if (list == null) return;
             for (Course c : list) {
                 courseModel.addRow(new Object[]{
@@ -186,3 +198,4 @@ public class AdminCourseManagementScreen extends JFrame {
         if (ok) loadCourses();
     }
 }
+
