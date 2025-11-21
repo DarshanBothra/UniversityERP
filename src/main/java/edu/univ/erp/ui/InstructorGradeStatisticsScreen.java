@@ -9,10 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
 
-/**
- * Small UI to request statistics for a sectionId and display average/median/mode
- * Calls InstructorService.getGradeStatistics(sectionId)
- */
 public class InstructorGradeStatisticsScreen extends JFrame {
 
     private final InstructorService service = new InstructorService();
@@ -47,6 +43,11 @@ public class InstructorGradeStatisticsScreen extends JFrame {
         mid.add(new JLabel("Section ID:"), gbc);
         gbc.gridx = 1;
         JTextField secField = new JTextField(10);
+
+        // *** ONLY REQUIRED CHANGE ***
+        secField.setBackground(Color.WHITE);
+        secField.setForeground(Color.BLACK);
+
         mid.add(secField, gbc);
 
         gbc.gridx = 0; gbc.gridy = 1; gbc.gridwidth = 2;

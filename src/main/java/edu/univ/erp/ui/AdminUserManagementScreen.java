@@ -47,6 +47,14 @@ public class AdminUserManagementScreen extends JFrame {
         getContentPane().setBackground(new Color(240,244,249));
         setLayout(new BorderLayout(10,10));
 
+        // 🔹 FIX: Ensure all input fields use white bg + black text
+        txtUsername.setBackground(Color.WHITE); txtUsername.setForeground(Color.BLACK);
+        txtPassword.setBackground(Color.WHITE); txtPassword.setForeground(Color.BLACK);
+        txtName.setBackground(Color.WHITE); txtName.setForeground(Color.BLACK);
+        txtDeptProg.setBackground(Color.WHITE); txtDeptProg.setForeground(Color.BLACK);
+        txtYear.setBackground(Color.WHITE); txtYear.setForeground(Color.BLACK);
+        txtRoll.setBackground(Color.WHITE); txtRoll.setForeground(Color.BLACK);
+
         // header
         JLabel header = new JLabel("User Management", SwingConstants.CENTER);
         header.setFont(new Font("Segoe UI", Font.BOLD, 20));
@@ -117,7 +125,7 @@ public class AdminUserManagementScreen extends JFrame {
         row = new JPanel(new FlowLayout(FlowLayout.LEFT));
         row.setBackground(Color.WHITE);
         row.add(new JLabel("Role:"));
-        row.add(cbRole);  // <-- UPDATED COMPONENT
+        row.add(cbRole);
         p.add(row);
 
         row = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -260,4 +268,5 @@ public class AdminUserManagementScreen extends JFrame {
         JOptionPane.showMessageDialog(this, ok ? "Reset successful." : "Reset failed.");
     }
 }
+
 

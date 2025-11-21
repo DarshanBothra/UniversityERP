@@ -59,7 +59,7 @@ public class InstructorProfileScreen extends JFrame {
 
         JButton refresh = new JButton("Refresh");
         refresh.setBackground(new Color(52,152,219));
-        refresh.setForeground(Color.WHITE);
+        refresh.setForeground(Color.BLACK);
         refresh.addActionListener(e -> loadProfile());
 
         JPanel bottom = new JPanel();

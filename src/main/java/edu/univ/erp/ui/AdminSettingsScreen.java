@@ -30,6 +30,16 @@ public class AdminSettingsScreen extends JFrame {
         getContentPane().setBackground(new Color(240,244,249));
         setLayout(new BorderLayout(8,8));
 
+        // ----------------------------------------------------
+        // ONLY REQUIRED FIX: if background = foreground → fix
+        // ----------------------------------------------------
+        txtRegDeadline.setBackground(Color.WHITE);
+        txtRegDeadline.setForeground(Color.BLACK);
+
+        txtDropDeadline.setBackground(Color.WHITE);
+        txtDropDeadline.setForeground(Color.BLACK);
+        // ----------------------------------------------------
+
         JLabel header = new JLabel("System Settings", SwingConstants.CENTER);
         header.setFont(new Font("Segoe UI", Font.BOLD, 20));
         header.setBorder(BorderFactory.createEmptyBorder(12,0,12,0));
@@ -104,7 +114,7 @@ public class AdminSettingsScreen extends JFrame {
                 boolean ok = adminService.setRegistrationDeadline(dt);
                 JOptionPane.showMessageDialog(this, ok ? "Registration deadline set." : "Set failed.");
             } catch (DateTimeParseException ex) {
-                JOptionPane.showMessageDialog(this, "Invalid format. Use ISO local date-time: 2025-12-01T23:59", "Input Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Invalid format. Use ISO: 2025-12-01T23:59", "Input Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -114,7 +124,7 @@ public class AdminSettingsScreen extends JFrame {
                 boolean ok = adminService.setDropDeadline(dt);
                 JOptionPane.showMessageDialog(this, ok ? "Drop deadline set." : "Set failed.");
             } catch (DateTimeParseException ex) {
-                JOptionPane.showMessageDialog(this, "Invalid format. Use ISO local date-time: 2025-12-01T23:59", "Input Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Invalid format. Use ISO: 2025-12-01T23:59", "Input Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -134,3 +144,4 @@ public class AdminSettingsScreen extends JFrame {
         }
     }
 }
+

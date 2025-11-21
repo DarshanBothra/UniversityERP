@@ -30,7 +30,11 @@ public class InstructorEnrolledStudentsScreen extends JFrame {
         setSize(900, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        getContentPane().setBackground(new Color(240,244,249));
+
+        // background/foreground
+        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setForeground(Color.BLACK);
+
         setLayout(new BorderLayout());
 
         JLabel header = new JLabel("Enrolled Students (All My Sections)", SwingConstants.CENTER);
@@ -78,4 +82,5 @@ public class InstructorEnrolledStudentsScreen extends JFrame {
         }
     }
 }
+
 

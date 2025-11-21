@@ -20,9 +20,9 @@ public class AdminCourseManagementScreen extends JFrame {
     private DefaultTableModel courseModel;
     private JTable courseTable;
 
-    // INPUT FIELD COLOR FIX
-    private final Color fieldBg = new Color(242, 242, 242); // light grey
-    private final Color fieldFg = Color.BLACK;
+    // FIX: Ensure fields do NOT have same bg/fg colors
+    private final Color fieldBg = Color.WHITE;  // changed to white
+    private final Color fieldFg = Color.BLACK;  // text black
 
     private final JTextField txtCode = createField(8);
     private final JTextField txtTitle = createField(12);
@@ -64,11 +64,11 @@ public class AdminCourseManagementScreen extends JFrame {
         setVisible(true);
     }
 
-    // ---- Helper to apply colors to all fields ----
+    // ---- Updated Helper (bg=white, fg=black) ----
     private JTextField createField(int size) {
         JTextField f = new JTextField(size);
-        f.setBackground(fieldBg);
-        f.setForeground(fieldFg);
+        f.setBackground(fieldBg);   // WHITE
+        f.setForeground(fieldFg);   // BLACK
         return f;
     }
 
@@ -176,13 +176,18 @@ public class AdminCourseManagementScreen extends JFrame {
             int courseId = Integer.parseInt(editCourseIdField.getText().trim());
             String newTitle = editTitleField.getText().trim();
             int newCredits = Integer.parseInt(editCreditsField.getText().trim());
-            boolean ok = adminService.editCourse(courseId, adminService.courseDAO.getCourseById(courseId).getCode(), newTitle, newCredits);
+            boolean ok = adminService.editCourse(courseId,
+                    adminService.courseDAO.getCourseById(courseId).getCode(),
+                    newTitle, newCredits);
             JOptionPane.showMessageDialog(this, ok ? "Course updated." : "Update failed.");
             if (ok) loadCourses();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Course ID and credits must be numeric.", "Input Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error updating course: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "Error updating course: " + ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 

@@ -31,29 +31,30 @@ public class AdminSectionManagementScreen extends JFrame {
         setLayout(new BorderLayout(8,8));
 
         // -----------------------------
-        // APPLY INPUT BOX COLOR CHANGES
+        // APPLY INPUT BOX COLOR FIX
         // -----------------------------
-        Color inputBg = new Color(242, 242, 242);  // light grey
+        Color fixedBg = Color.WHITE;
+        Color fixedFg = Color.BLACK;
 
-        txtCode.setBackground(inputBg);
-        txtCode.setForeground(Color.BLACK);
+        txtCode.setBackground(fixedBg);
+        txtCode.setForeground(fixedFg);
 
-        txtTitle.setBackground(inputBg);
-        txtTitle.setForeground(Color.BLACK);
+        txtTitle.setBackground(fixedBg);
+        txtTitle.setForeground(fixedFg);
 
-        txtCredits.setBackground(inputBg);
-        txtCredits.setForeground(Color.BLACK);
+        txtCredits.setBackground(fixedBg);
+        txtCredits.setForeground(fixedFg);
 
-        editCourseIdField.setBackground(inputBg);
-        editCourseIdField.setForeground(Color.BLACK);
+        editCourseIdField.setBackground(fixedBg);
+        editCourseIdField.setForeground(fixedFg);
 
-        editTitleField.setBackground(inputBg);
-        editTitleField.setForeground(Color.BLACK);
+        editTitleField.setBackground(fixedBg);
+        editTitleField.setForeground(fixedFg);
 
-        editCreditsField.setBackground(inputBg);
-        editCreditsField.setForeground(Color.BLACK);
+        editCreditsField.setBackground(fixedBg);
+        editCreditsField.setForeground(fixedFg);
         // -----------------------------
-        // END OF INPUT COLOR CHANGES
+        // END FIX
         // -----------------------------
 
         JLabel header = new JLabel("Course Management", SwingConstants.CENTER);
@@ -206,3 +207,4 @@ public class AdminSectionManagementScreen extends JFrame {
         if (ok) loadCourses();
     }
 }
+

@@ -54,7 +54,7 @@ public class RegisterCourseFrame extends JFrame {
         courseTable.setRowHeight(25);
         courseTable.setFont(new Font("SansSerif", Font.PLAIN, 15));
         courseTable.getTableHeader().setBackground(header);
-        courseTable.getTableHeader().setForeground(Color.WHITE);
+        courseTable.getTableHeader().setForeground(Color.BLACK);
         courseTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 15));
 
         JScrollPane scrollPane = new JScrollPane(courseTable);
@@ -65,7 +65,7 @@ public class RegisterCourseFrame extends JFrame {
         // ===== REGISTER BUTTON =====
         JButton registerBtn = new JButton("Register for Selected Course");
         registerBtn.setBackground(header);
-        registerBtn.setForeground(Color.WHITE);
+        registerBtn.setForeground(Color.BLACK);
         registerBtn.setFont(new Font("SansSerif", Font.BOLD, 18));
         registerBtn.setFocusPainted(false);
 

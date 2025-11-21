@@ -52,7 +52,7 @@ public class InstructorViewSectionsScreen extends JFrame {
         bottom.setBackground(new Color(240, 244, 249));
         JButton refresh = new JButton("Refresh");
         refresh.setBackground(new Color(52,152,219));
-        refresh.setForeground(Color.WHITE);
+        refresh.setForeground(Color.BLACK);
         bottom.add(refresh);
         add(bottom, BorderLayout.SOUTH);
 

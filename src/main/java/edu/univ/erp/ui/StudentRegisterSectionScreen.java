@@ -5,6 +5,10 @@ import edu.univ.erp.domain.SectionDetail;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.util.List;
 
@@ -37,11 +41,38 @@ public class StudentRegisterSectionScreen extends JFrame {
         table.setRowHeight(30);
         table.setFont(new Font("Arial", Font.PLAIN, 15));
         table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 15));
-        // Change table cell background color (light themed blue)
+
+        // Table cell background (light themed blue)
         table.setBackground(new Color(235, 245, 255));      // very light blue
-        table.setSelectionBackground(new Color(180, 210, 255)); // selection blue
+        table.setSelectionBackground(new Color(180, 210, 255));
         table.setSelectionForeground(Color.BLACK);
 
+        // NEW: Apply input-theme colors (light blue + black text)
+        Color inputBg = new Color(0xDDEEFF);
+        Color inputFg = Color.BLACK;
+
+        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(
+                    JTable tbl, Object value, boolean isSelected,
+                    boolean hasFocus, int row, int column) {
+
+                Component c = super.getTableCellRendererComponent(tbl, value, isSelected, hasFocus, row, column);
+
+                if (!isSelected) {
+                    c.setBackground(inputBg);
+                    c.setForeground(inputFg);
+                }
+
+                return c;
+            }
+        });
+
+        // Editor color fix (in case table is editable in future)
+        JTextField editorField = new JTextField();
+        editorField.setBackground(inputBg);
+        editorField.setForeground(inputFg);
+        table.setDefaultEditor(Object.class, new DefaultCellEditor(editorField));
 
         JScrollPane pane = new JScrollPane(table);
         add(pane, BorderLayout.CENTER);

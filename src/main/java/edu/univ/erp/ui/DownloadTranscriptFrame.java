@@ -49,6 +49,10 @@ public class DownloadTranscriptFrame extends JFrame {
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogTitle("Save Transcript");
 
+        // ✅ ONLY CHANGE YOU ASKED FOR:
+        chooser.setBackground(Color.WHITE);
+        chooser.setForeground(Color.BLACK);
+
         int result = chooser.showSaveDialog(this);
 
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -68,3 +72,4 @@ public class DownloadTranscriptFrame extends JFrame {
         }
     }
 }
+

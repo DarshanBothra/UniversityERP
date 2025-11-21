@@ -39,7 +39,7 @@ public class InstructorExportGradesScreen extends JFrame {
         mid.setBackground(new Color(240,244,249));
         JButton choose = new JButton("Choose File & Export");
         choose.setBackground(new Color(52,152,219));
-        choose.setForeground(Color.WHITE);
+        choose.setForeground(Color.BLACK);
         mid.add(choose);
         add(mid, BorderLayout.CENTER);
 

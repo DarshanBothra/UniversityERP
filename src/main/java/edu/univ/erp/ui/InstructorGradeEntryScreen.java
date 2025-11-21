@@ -44,29 +44,49 @@ public class InstructorGradeEntryScreen extends JFrame {
         gbc.insets = new Insets(8,8,8,8);
         gbc.anchor = GridBagConstraints.WEST;
 
+        // -----------------------------
+        // INPUT FIELD COLORS UPDATED
+        // -----------------------------
+        Color fieldBg = new Color(242, 242, 242); // #F2F2F2
+        Color fieldText = Color.BLACK;
+
         gbc.gridx = 0; gbc.gridy = 0;
         form.add(new JLabel("Enrollment ID:"), gbc);
         gbc.gridx = 1;
         JTextField enrollmentField = new JTextField(12);
+        enrollmentField.setBackground(fieldBg);
+        enrollmentField.setForeground(fieldText);
         form.add(enrollmentField, gbc);
 
         gbc.gridx = 0; gbc.gridy = 1;
         form.add(new JLabel("Component:"), gbc);
         gbc.gridx = 1;
         JComboBox<Component> compBox = new JComboBox<>(Component.values());
+        compBox.setBackground(fieldBg);
+        compBox.setForeground(fieldText);
         form.add(compBox, gbc);
 
         gbc.gridx = 0; gbc.gridy = 2;
         form.add(new JLabel("Score (numeric):"), gbc);
         gbc.gridx = 1;
         JTextField scoreField = new JTextField(12);
+        scoreField.setBackground(fieldBg);
+        scoreField.setForeground(fieldText);
         form.add(scoreField, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2;
+        gbc.gridx = 0; gbc.gridy = 3;
+        gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
+
+        // -----------------------------
+        // UPDATED SUBMIT BUTTON LOOK
+        // -----------------------------
         JButton submit = new JButton("Submit Score");
-        submit.setBackground(new Color(52,152,219));
-        submit.setForeground(Color.WHITE);
+        submit.setBackground(Color.WHITE);
+        submit.setForeground(Color.BLACK);
+        submit.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        submit.setFocusPainted(false);
+
         form.add(submit, gbc);
 
         add(form, BorderLayout.CENTER);
@@ -90,3 +110,4 @@ public class InstructorGradeEntryScreen extends JFrame {
         setVisible(true);
     }
 }
+
