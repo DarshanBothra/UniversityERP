@@ -28,9 +28,12 @@ public class GradeDAO {
             int affected = stmt.executeUpdate();
             if (affected > 0){
                 ResultSet rs = stmt.getGeneratedKeys();
-                int gradeId = rs.getInt(1);
-                g.setGradeId(gradeId);
-                return gradeId;
+                if (rs.next()){
+                    int gradeId = rs.getInt(1);
+                    g.setGradeId(gradeId);
+                    return gradeId;
+                }
+
             }
         } catch (SQLException e){
             System.err.println("Error inserting grade: " + e.getMessage());
@@ -90,8 +93,9 @@ public class GradeDAO {
         String sql = "SELECT g.* FROM grades g JOIN enrollments e on g.enrollment_id = e.enrollment_id WHERE e.section_id = ? AND g.final_grade is NOT NULL";
         List<Grade> retList = new ArrayList<Grade>();
         try (Connection conn = DBConnection.getERPConnection();
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        ResultSet rs = stmt.executeQuery()){
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, sectionId);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()){
                 retList.add(mapResultToGrade(rs));
             }

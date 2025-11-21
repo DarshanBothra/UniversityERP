@@ -1,6 +1,8 @@
 package edu.univ.erp.ui;
 
+import edu.univ.erp.domain.LoginStatus;
 import edu.univ.erp.domain.Role;
+import edu.univ.erp.domain.Status;
 import edu.univ.erp.domain.User;
 import edu.univ.erp.service.AdminService;
 import edu.univ.erp.auth.session.SessionManager;
@@ -22,8 +24,8 @@ public class AdminUserManagementScreen extends JFrame {
     private final AdminService adminService = new AdminService();
     private final int adminId = SessionManager.getActiveSession() == null ? -1 : SessionManager.getActiveSession().getUserId();
 
-    private final DefaultTableModel userModel;
-    private final JTable userTable;
+    private DefaultTableModel userModel;
+    private JTable userTable;
 
     // form fields
     private final JTextField txtUsername = new JTextField(12);
@@ -176,12 +178,14 @@ public class AdminUserManagementScreen extends JFrame {
             List<User> users = adminService.getAllUsers();
             if (users == null) return;
             for (User u : users) {
+                String username = u.getUserId();
+                LoginStatus status = adminService.authStore.getCurrentStatus(username);
                 userModel.addRow(new Object[]{
-                        u.getUserId(),
-                        u.getUsername(),
+                        adminService.authStore.getUserId(username),
+                        username,
                         u.getRole().name(),
-                        u.getStatus() == null ? "-" : u.getStatus().toString(),
-                        u.getLastLogin() == null ? "-" : u.getLastLogin().toString()
+                        status == null ? "-" : status.toString(),
+                        adminService.authStore.getLastLogin(username) == null ? "-" : adminService.authStore.getLastLogin(username)
                 });
             }
         } catch (Exception e) {
@@ -237,6 +241,7 @@ public class AdminUserManagementScreen extends JFrame {
             return;
         }
         String username = String.valueOf(userModel.getValueAt(r, 1));
+        System.out.println(username);
         int confirm = JOptionPane.showConfirmDialog(this, "Delete user '" + username + "' ?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
         if (confirm != JOptionPane.YES_OPTION) return;
         boolean ok = adminService.deleteUser(username);

@@ -36,7 +36,7 @@ public class MaintenanceManager {
 
     public static boolean disableMaintenance(){
         try{
-            boolean result = settingDAO.updateSetting("maintenance_mode", "off");
+            boolean result = settingDAO.updateSetting("maintenance_on", "off");
             if (result){
                 System.out.println("Maintenance mode disabled successfully.");
             }

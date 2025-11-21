@@ -1,5 +1,6 @@
 package edu.univ.erp.ui;
 
+import edu.univ.erp.auth.AuthService;
 import edu.univ.erp.auth.session.SessionManager;
 import edu.univ.erp.auth.session.SessionUser;
 import edu.univ.erp.data.StudentDAO;
@@ -149,7 +150,8 @@ public class StudentDashboard extends JFrame {
             b.addActionListener(e -> {
                 if (card.equals("logout")) {
                     // simple logout: clear session then close
-                    SessionManager.clearSession();
+                    AuthService authService = new AuthService();
+                    authService.logout();
                     dispose();
                     new LoginFrame().setVisible(true);
                     return;
@@ -278,7 +280,8 @@ public class StudentDashboard extends JFrame {
         //bottom.add(registerBtn);
 
         registerBtn.addActionListener(e -> {
-            String txt = secIdField.getText().trim();
+//            String txt = secIdField.getText().trim();
+            String txt = "";
             if (txt.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Enter Section ID to register.");
                 return;
@@ -631,7 +634,8 @@ public class StudentDashboard extends JFrame {
         logout.setForeground(Color.WHITE);
         logout.setAlignmentX(Component.LEFT_ALIGNMENT);
         logout.addActionListener(e -> {
-            SessionManager.clearSession();
+            AuthService authService = new AuthService();
+            authService.logout();
             dispose();
             new LoginFrame().setVisible(true);
         });

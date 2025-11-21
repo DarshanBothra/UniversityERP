@@ -1,5 +1,8 @@
 package edu.univ.erp.auth.store;
 
+import edu.univ.erp.auth.AuthService;
+import edu.univ.erp.data.InstructorDAO;
+import edu.univ.erp.data.StudentDAO;
 import edu.univ.erp.domain.LoginStatus;
 import edu.univ.erp.domain.Role;
 import edu.univ.erp.domain.User;
@@ -30,7 +33,7 @@ public class AuthStore {
             if (affected > 0){
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()){
-                    return rs.getInt("user_id");
+                    return rs.getInt(1);
                 }
             }
         } catch (SQLException e){
@@ -91,7 +94,7 @@ public class AuthStore {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()){
-                return LoginStatus.fromString(rs.getString("user_id"));
+                return LoginStatus.fromString(rs.getString("status"));
             }
         } catch (SQLException e){
             System.err.println("Error fetching user status: " + e.getMessage());
@@ -105,8 +108,8 @@ public class AuthStore {
         PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
-            if (rs.last()){
-                return rs.getTimestamp("last_login");
+            if (rs.next()){
+                return rs.getTimestamp(1);
             }
         } catch (SQLException e){
             System.err.println("Error fetching last login timestamp: " + e.getMessage());
@@ -219,6 +222,20 @@ public class AuthStore {
     }
 
     public boolean deleteUser(String username){
+        AuthService authService = new AuthService();
+        int id = authService.getSessionUser().getUserId();
+        Role role = authService.getSessionUser().getRole();
+        try{
+            if (role == Role.STUDENT){
+                StudentDAO studentDAO = new StudentDAO();
+                studentDAO.deleteStudent(studentDAO.getStudentById(id).getRollNo());
+            }else if (role == Role.INSTRUCTOR){
+                InstructorDAO instructorDAO = new InstructorDAO();
+                instructorDAO.deleteInstructor(instructorDAO.getInstructorById(id).getInstructorId());
+            }
+        } catch (Exception e){
+            System.err.println("Error deleting user: " + e.getMessage());
+        }
         String sql = "DELETE FROM users_auth WHERE username = ?";
         try (Connection conn = DBConnection.getAuthConnection();
         PreparedStatement stmt = conn.prepareStatement(sql)){

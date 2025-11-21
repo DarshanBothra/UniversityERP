@@ -5,8 +5,8 @@ CREATE DATABASE erp_db;
 USE erp_db;
 
 CREATE TABLE students(
-    user_id INT UNIQUE NOT NULL, -- fetch from db/auth_db.users_auth table after creating entry
     student_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNIQUE NOT NULL, -- fetch from db/auth_db.users_auth table after creating entry
     name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE, -- fetch from db/auth_db.users_auth table after creating entry
     roll_no INT NOT NULL UNIQUE,
@@ -15,8 +15,8 @@ CREATE TABLE students(
 );
 
 CREATE TABLE instructors(
-    user_id INT UNIQUE NOT NULL, -- fetch from db/auth_db.users_auth table after creating entry
     instructor_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNIQUE NOT NULL, -- fetch from db/auth_db.users_auth table after creating entry
     name VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE, -- fetch from db/auth_db.users_auth table after creating entry
     department VARCHAR(10) NOT NULL

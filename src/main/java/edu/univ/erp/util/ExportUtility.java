@@ -84,7 +84,7 @@ public class ExportUtility {
             // for all sections get all enrollments
             List<Enrollment> enrollmentList = new ArrayList<Enrollment>();
             for (Section s: sectionList){
-                enrollmentList.addAll(enrollmentDAO.getALlEnrollmentsForSection(s.getSectionId()));
+                enrollmentList.addAll(enrollmentDAO.getAllEnrollmentsForSection(s.getSectionId()));
             }
             int totalEnrollments = enrollmentList.size();
 

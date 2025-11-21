@@ -67,7 +67,7 @@ public class SettingDAO {
     }
 
     public boolean updateSetting(String key, String value){
-        String sql = "UPDATE setting SET setting_value = ? WHERE key = ?";
+        String sql = "UPDATE settings SET setting_value = ? WHERE setting_key = ?";
         try (Connection conn = DBConnection.getERPConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, value);

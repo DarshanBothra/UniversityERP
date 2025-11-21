@@ -38,10 +38,14 @@ public class SectionDAO {
 
             int affected = stmt.executeUpdate();
             if (affected > 0){
+
                 ResultSet rs = stmt.getGeneratedKeys();
-                int sectionId = rs.getInt(1);
-                s.setSectionId(sectionId);
-                return sectionId;
+                if (rs.next()){
+                    int sectionId = rs.getInt(1);
+                    s.setSectionId(sectionId);
+                    return sectionId;
+                }
+
             }
         } catch (SQLException e){
             System.err.println("Error inserting Section: " + e.getMessage());

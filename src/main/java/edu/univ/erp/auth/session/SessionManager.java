@@ -21,6 +21,7 @@ public class SessionManager {
 
     public static void clearSession(){
         if (activeSession != null){
+
             System.out.printf("Session cleared for user: %s (id: %d, role: %s).\n", activeSession.getUsername(), activeSession.getUserId(), activeSession.getRole().getDbValue());
         }
         activeSession = null;

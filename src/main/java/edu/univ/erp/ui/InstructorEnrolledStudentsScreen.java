@@ -1,5 +1,6 @@
 package edu.univ.erp.ui;
 
+import edu.univ.erp.data.InstructorDAO;
 import edu.univ.erp.domain.Enrollment;
 import edu.univ.erp.service.InstructorService;
 import edu.univ.erp.auth.session.SessionManager;
@@ -22,7 +23,8 @@ public class InstructorEnrolledStudentsScreen extends JFrame {
 
     public InstructorEnrolledStudentsScreen() {
         SessionUser u = SessionManager.getActiveSession();
-        this.instructorId = u == null ? -1 : u.getUserId();
+        InstructorDAO instructorDAO = new InstructorDAO();
+        this.instructorId = u == null ? -1 : instructorDAO.getInstructorById(u.getUserId()).getInstructorId();
 
         setTitle("Enrolled Students");
         setSize(900, 600);
@@ -60,7 +62,7 @@ public class InstructorEnrolledStudentsScreen extends JFrame {
 
     private void loadEnrollments() {
         try {
-            List<Enrollment> list = service.getEnrollmentsForMySections(instructorId);
+            List<Enrollment> list = service.getEnrollmentsForMySections(this.instructorId);
             model.setRowCount(0);
             if (list == null) return;
             for (Enrollment en : list) {

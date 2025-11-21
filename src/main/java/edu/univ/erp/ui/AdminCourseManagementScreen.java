@@ -17,8 +17,8 @@ import java.util.List;
 public class AdminCourseManagementScreen extends JFrame {
 
     private final AdminService adminService = new AdminService();
-    private final DefaultTableModel courseModel;
-    private final JTable courseTable;
+    private DefaultTableModel courseModel;
+    private JTable courseTable;
 
     private final JTextField txtCode = new JTextField(8);
     private final JTextField txtTitle = new JTextField(12);
