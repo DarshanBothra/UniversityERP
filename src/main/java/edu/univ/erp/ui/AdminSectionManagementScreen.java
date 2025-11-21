@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class AdminCourseManagementScreen extends JFrame {
+public class AdminSectionManagementScreen extends JFrame {
 
     private final AdminService adminService = new AdminService();
     private DefaultTableModel courseModel;
@@ -22,7 +22,7 @@ public class AdminCourseManagementScreen extends JFrame {
     private final JTextField editTitleField = new JTextField(12);
     private final JTextField editCreditsField = new JTextField(4);
 
-    public AdminCourseManagementScreen() {
+    public AdminSectionManagementScreen() {
         setTitle("Admin — Course Management");
         setSize(900, 600);
         setLocationRelativeTo(null);
