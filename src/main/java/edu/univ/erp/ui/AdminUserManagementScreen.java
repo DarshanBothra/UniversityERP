@@ -12,12 +12,10 @@ import java.util.List;
 
 /**
  * AdminUserManagementScreen
- * - Create users (student / instructor)
+ * - Create users (student / instructor / admin)
  * - List all users
  * - Delete user
  * - Reset login attempts
- *
- * Uses AdminService.createUser, getAllUsers, deleteUser, resetLoginAttempts
  */
 public class AdminUserManagementScreen extends JFrame {
 
@@ -30,7 +28,10 @@ public class AdminUserManagementScreen extends JFrame {
     // form fields
     private final JTextField txtUsername = new JTextField(12);
     private final JPasswordField txtPassword = new JPasswordField(12);
-    private final JComboBox<String> cbRole = new JComboBox<>(new String[]{"STUDENT", "INSTRUCTOR"});
+
+    // ⬅️ UPDATED: ADMIN ADDED TO THE DROPDOWN
+    private final JComboBox<String> cbRole = new JComboBox<>(new String[]{"ADMIN", "STUDENT", "INSTRUCTOR"});
+
     private final JTextField txtName = new JTextField(12);
     private final JTextField txtDeptProg = new JTextField(12);
     private final JTextField txtYear = new JTextField(4);
@@ -114,7 +115,7 @@ public class AdminUserManagementScreen extends JFrame {
         row = new JPanel(new FlowLayout(FlowLayout.LEFT));
         row.setBackground(Color.WHITE);
         row.add(new JLabel("Role:"));
-        row.add(cbRole);
+        row.add(cbRole);  // <-- UPDATED COMPONENT
         p.add(row);
 
         row = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -196,6 +197,7 @@ public class AdminUserManagementScreen extends JFrame {
         String deptprog = txtDeptProg.getText().trim();
         int year = -1;
         int roll = -1;
+
         try {
             if (!txtYear.getText().trim().isEmpty()) year = Integer.parseInt(txtYear.getText().trim());
             if (!txtRoll.getText().trim().isEmpty()) roll = Integer.parseInt(txtRoll.getText().trim());
@@ -253,3 +255,4 @@ public class AdminUserManagementScreen extends JFrame {
         JOptionPane.showMessageDialog(this, ok ? "Reset successful." : "Reset failed.");
     }
 }
+

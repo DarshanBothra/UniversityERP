@@ -37,6 +37,11 @@ public class StudentRegisterSectionScreen extends JFrame {
         table.setRowHeight(30);
         table.setFont(new Font("Arial", Font.PLAIN, 15));
         table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 15));
+        // Change table cell background color (light themed blue)
+        table.setBackground(new Color(235, 245, 255));      // very light blue
+        table.setSelectionBackground(new Color(180, 210, 255)); // selection blue
+        table.setSelectionForeground(Color.BLACK);
+
 
         JScrollPane pane = new JScrollPane(table);
         add(pane, BorderLayout.CENTER);
