@@ -18,5 +18,6 @@ CREATE TABLE users_auth(
 INSERT INTO users_auth (username, role, password_hash) VALUES
 ('admin1', 'ADMIN', '$2a$10$1gmaS91lL.kL/RdSGjF74.rkmpZdwgjEYGz4vZF1TIBz15shjQzru'),
 ('inst1', 'INSTRUCTOR', '$2a$10$WQdRjr85hAgbjyApOfWA1uobUIuFLgHQbN/ckvmxytsbCv/6PWLSS'),
+('inst2', 'INSTRUCTOR', '$2a$10$Da7VTqH50OYCxczDlEj0Uuo1fsoQV3XTm3a.tUTsgOH4uKAL/EijG'),
 ('stu1', 'STUDENT', '$2a$10$YxTOzDYnQ8KX75Ev85oKz.qusfd2v/Wx5xh7nT/QklDI6oS.riSXi'),
 ('stu2', 'STUDENT', '$2a$10$lEsewOWwliWmntXnh8BtseINrBYbS3k/LW5R5X4xUpU7uGmJImuF6');

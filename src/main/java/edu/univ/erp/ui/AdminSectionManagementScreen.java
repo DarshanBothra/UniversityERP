@@ -23,7 +23,7 @@ public class AdminSectionManagementScreen extends JFrame {
     private final JTextField editCreditsField = new JTextField(4);
 
     public AdminSectionManagementScreen() {
-        setTitle("Admin — Course Management");
+        setTitle("Admin — Section Management");
         setSize(900, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
