@@ -98,7 +98,7 @@ UniversityERP/
 │               ├── ValidationUtility.java
 │                ExportUtility.java    # CSV/PDF and DB backup
 ├── ERDiagram.png # ER Diagram for databases and tables   
-├── UML.png # UML For Project      
+├── UML.pdf # UML For Project      
 └── TestingPlan.pdf # Testing Plan for the Project
 
 ```
