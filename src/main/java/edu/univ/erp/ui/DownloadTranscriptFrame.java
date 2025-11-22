@@ -31,7 +31,7 @@ public class DownloadTranscriptFrame extends JFrame {
         JButton chooseBtn = new JButton("Choose Save Location");
         chooseBtn.setFont(new Font("Arial", Font.BOLD, 16));
         chooseBtn.setBackground(new Color(0, 102, 204));
-        chooseBtn.setForeground(Color.WHITE);
+        chooseBtn.setForeground(Color.BLACK);
         chooseBtn.setFocusPainted(false);
 
         chooseBtn.addActionListener(e -> openSaveDialog());

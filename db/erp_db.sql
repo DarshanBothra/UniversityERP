@@ -31,7 +31,7 @@ CREATE TABLE courses(
 
 CREATE TABLE sections(
     section_id INT AUTO_INCREMENT PRIMARY KEY,
-    course_id INT NOT NULL, -- query courses table with course code
+    course_id INT UNIQUE NOT NULL , -- query courses table with course code
     instructor_id INT NOT NULL,
     name VARCHAR(50) NOT NULL,
     day_time VARCHAR(100),

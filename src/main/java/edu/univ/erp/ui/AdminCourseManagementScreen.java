@@ -55,7 +55,7 @@ public class AdminCourseManagementScreen extends JFrame {
         bottom.setBackground(new Color(240,244,249));
         JButton btnDelete = new JButton("Delete Selected Course");
         btnDelete.setBackground(new Color(52,152,219));
-        btnDelete.setForeground(Color.WHITE);
+        btnDelete.setForeground(Color.BLACK);
         btnDelete.addActionListener(e -> deleteSelectedCourse());
         bottom.add(btnDelete);
         add(bottom, BorderLayout.SOUTH);
@@ -98,7 +98,7 @@ public class AdminCourseManagementScreen extends JFrame {
 
         JButton createBtn = new JButton("Create");
         createBtn.setBackground(new Color(52,152,219));
-        createBtn.setForeground(Color.WHITE);
+        createBtn.setForeground(Color.BLACK);
         createBtn.addActionListener(e -> createCourse());
         p.add(createBtn);
 
@@ -119,7 +119,7 @@ public class AdminCourseManagementScreen extends JFrame {
 
         JButton editBtn = new JButton("Save Changes");
         editBtn.setBackground(new Color(52,152,219));
-        editBtn.setForeground(Color.WHITE);
+        editBtn.setForeground(Color.BLACK);
         editBtn.addActionListener(e -> editCourse());
         p.add(editBtn);
 

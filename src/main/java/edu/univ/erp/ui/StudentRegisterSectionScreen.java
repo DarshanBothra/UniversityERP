@@ -83,7 +83,7 @@ public class StudentRegisterSectionScreen extends JFrame {
         JButton registerBtn = new JButton("Register");
         registerBtn.setFont(new Font("Arial", Font.BOLD, 18));
         registerBtn.setBackground(new Color(30, 140, 255));
-        registerBtn.setForeground(Color.white);
+        registerBtn.setForeground(Color.BLACK);
         registerBtn.setFocusPainted(false);
         registerBtn.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 
