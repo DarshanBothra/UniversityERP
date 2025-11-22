@@ -74,9 +74,9 @@ public class AdminUserManagementScreen extends JFrame {
         JButton btnDelete = new JButton("Delete Selected User");
         JButton btnResetAttempts = new JButton("Reset Login Attempts");
         btnDelete.setBackground(new Color(52,152,219));
-        btnDelete.setForeground(Color.WHITE);
+        btnDelete.setForeground(Color.BLACK);
         btnResetAttempts.setBackground(new Color(52,152,219));
-        btnResetAttempts.setForeground(Color.WHITE);
+        btnResetAttempts.setForeground(Color.BLACK);
 
         bottom.add(btnResetAttempts);
         bottom.add(btnDelete);
@@ -156,7 +156,7 @@ public class AdminUserManagementScreen extends JFrame {
 
         JButton createBtn = new JButton("Create User");
         createBtn.setBackground(new Color(52,152,219));
-        createBtn.setForeground(Color.WHITE);
+        createBtn.setForeground(Color.BLACK);
         createBtn.setAlignmentX(Component.LEFT_ALIGNMENT);
         createBtn.addActionListener(e -> createUserAction());
         p.add(createBtn);

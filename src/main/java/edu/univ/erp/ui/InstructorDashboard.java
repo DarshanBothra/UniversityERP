@@ -9,6 +9,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InstructorDashboard extends JFrame {
+    
+    private JButton createMenuButton(String text) {
+        JButton b = new JButton(text);
+        b.setFocusPainted(false);
+        b.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+        b.setForeground(Color.WHITE);
+        b.setBackground(new Color(21, 101, 192));
+        b.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        return b;
+    }
 
     private final InstructorService instructorService;
     private final SessionUser sessionUser;
@@ -109,18 +119,8 @@ public class InstructorDashboard extends JFrame {
             new LoginFrame().setVisible(true);   // <-- added to return to login screen
         });
 
-    });
-    }
-
-    private JButton createMenuButton(String text) {
-        JButton b = new JButton(text);
-        b.setFocusPainted(false);
-        b.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-        b.setForeground(Color.WHITE);
-        b.setBackground(new Color(21, 101, 192));
-        b.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-        return b;
-    }
-
+    };
 }
+
+
 

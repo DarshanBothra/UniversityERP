@@ -61,7 +61,7 @@ public class AdminSettingsScreen extends JFrame {
         row1.add(lblMaintenance);
         JButton btnToggle = new JButton("Toggle Maintenance");
         btnToggle.setBackground(new Color(52,152,219));
-        btnToggle.setForeground(Color.WHITE);
+        btnToggle.setForeground(Color.BLACK);
         row1.add(btnToggle);
         center.add(row1);
 
@@ -77,7 +77,7 @@ public class AdminSettingsScreen extends JFrame {
         row2.add(txtRegDeadline);
         JButton btnRegSet = new JButton("Set");
         btnRegSet.setBackground(new Color(52,152,219));
-        btnRegSet.setForeground(Color.WHITE);
+        btnRegSet.setForeground(Color.BLACK);
         row2.add(btnRegSet);
         center.add(row2);
 
@@ -87,7 +87,7 @@ public class AdminSettingsScreen extends JFrame {
         row3.add(txtDropDeadline);
         JButton btnDropSet = new JButton("Set");
         btnDropSet.setBackground(new Color(52,152,219));
-        btnDropSet.setForeground(Color.WHITE);
+        btnDropSet.setForeground(Color.BLACK);
         row3.add(btnDropSet);
         center.add(row3);
 
@@ -97,7 +97,7 @@ public class AdminSettingsScreen extends JFrame {
         bottom.setBackground(new Color(240,244,249));
         JButton btnRefresh = new JButton("Refresh Status");
         btnRefresh.setBackground(new Color(52,152,219));
-        btnRefresh.setForeground(Color.WHITE);
+        btnRefresh.setForeground(Color.BLACK);
         bottom.add(btnRefresh);
         add(bottom, BorderLayout.SOUTH);
 

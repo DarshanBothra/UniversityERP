@@ -73,7 +73,7 @@ public class InstructorProfileScreen extends JFrame {
 
     private void loadProfile() {
         try {
-            Instructor ins = service.getProfile(instructorId);
+            Instructor ins = service.getProfile(SessionManager.getActiveSession().getUserId());
             if (ins == null) {
                 lblName.setText("Name: -");
                 lblUser.setText("Username: -");

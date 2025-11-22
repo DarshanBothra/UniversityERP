@@ -1,6 +1,5 @@
 package edu.univ.erp.data;
 
-import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import edu.univ.erp.domain.Instructor;
 import java.sql.*;
 import java.util.ArrayList;

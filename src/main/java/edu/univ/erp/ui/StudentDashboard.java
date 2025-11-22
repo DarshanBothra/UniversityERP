@@ -375,7 +375,7 @@ public class StudentDashboard extends JFrame {
         JTextField sectionIdField = new JTextField(8);
         JButton regBtn = new JButton("Register");
         regBtn.setBackground(primary);
-        regBtn.setForeground(Color.WHITE);
+        regBtn.setForeground(Color.BLACK);
 
         form.add(new JLabel("Section ID:"));
         form.add(sectionIdField);
@@ -426,7 +426,7 @@ public class StudentDashboard extends JFrame {
         JTextField secIdField = new JTextField(8);
         JButton dropBtn = new JButton("Drop");
         dropBtn.setBackground(primary);
-        dropBtn.setForeground(Color.WHITE);
+        dropBtn.setForeground(Color.BLACK);
 
         form.add(new JLabel("Section ID:"));
         form.add(secIdField);
@@ -567,7 +567,7 @@ public class StudentDashboard extends JFrame {
         row.setBackground(cardBg);
         JButton exportBtn = new JButton("Choose location & Export");
         exportBtn.setBackground(primary);
-        exportBtn.setForeground(Color.WHITE);
+        exportBtn.setForeground(Color.BLACK);
 
         exportBtn.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser();
@@ -631,7 +631,7 @@ public class StudentDashboard extends JFrame {
         // logout button
         JButton logout = new JButton("Logout");
         logout.setBackground(primary);
-        logout.setForeground(Color.WHITE);
+        logout.setForeground(Color.BLACK);
         logout.setAlignmentX(Component.LEFT_ALIGNMENT);
         logout.addActionListener(e -> {
             AuthService authService = new AuthService();

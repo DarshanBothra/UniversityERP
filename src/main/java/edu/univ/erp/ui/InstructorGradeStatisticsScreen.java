@@ -54,7 +54,7 @@ public class InstructorGradeStatisticsScreen extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         JButton getBtn = new JButton("Get Statistics");
         getBtn.setBackground(new Color(52,152,219));
-        getBtn.setForeground(Color.WHITE);
+        getBtn.setForeground(Color.BLACK);
         mid.add(getBtn, gbc);
 
         add(mid, BorderLayout.CENTER);

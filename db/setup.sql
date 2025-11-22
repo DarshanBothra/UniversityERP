@@ -1,4 +1,4 @@
-CREATE USER 'erpuser'@'localhost' IDENTIFIED BY 'ERP@2025#';
+CREATE USER IF NOT EXISTS 'erpuser'@'localhost' IDENTIFIED BY 'ERP@2025#';
 
 GRANT ALL PRIVILEGES ON erp_db.* TO 'erpuser'@'localhost';
 GRANT ALL PRIVILEGES ON erp_db.* TO 'erpuser'@'localhost';
