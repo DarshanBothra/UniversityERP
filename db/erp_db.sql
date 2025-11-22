@@ -167,9 +167,15 @@ INSERT INTO courses (code, title, credits) VALUES ('OFK759', 'Okwsys Fsxmwc Kzac
 INSERT INTO courses (code, title, credits) VALUES ('KFT358', 'Kdxcip Fgww Tizh ', 1);
 INSERT INTO courses (code, title, credits) VALUES ('IHT380', 'Ipln Hntsu Tphiat ', 2);
 
-INSERT INTO students(user_id, name, username, roll_no, program, current_year) VALUES (3, 'Jack Baker', 'stu1', 2001000, 'B.Tech', 2023);
-INSERT INTO students(user_id, name, username, roll_no, program, current_year) VALUES (4, 'Dexter Morgan', 'stu2', 2004000, 'M.Tech', 2025);
+INSERT INTO students(user_id, name, username, roll_no, program, current_year) VALUES (4, 'Jack Baker', 'stu1', 2001000, 'B.Tech', 2023);
+INSERT INTO students(user_id, name, username, roll_no, program, current_year) VALUES (5, 'Dexter Morgan', 'stu2', 2004000, 'M.Tech', 2025);
 
 INSERT INTO instructors (user_id, name, username, department) VALUES (2, 'Hector Munday', 'inst1', 'ECE');
+INSERT INTO instructors (user_id, name, username, department) VALUES (3, 'James Doakes', 'inst2', 'CSE');
 
-
+INSERT INTO sections (course_id, instructor_id, name, day_time, room, capacity, semester, current_year) VALUES (1, 2, 'Section 1', 'Monday 12:00-1:30', "C101", 150, 'Monsoon', 2025);
+INSERT INTO sections (course_id, instructor_id, name, day_time, room, capacity, semester, current_year) VALUES (2, 2, 'Section 2', 'Wednesday 12:00-1:30', "C102", 56, 'Winter', 2025);
+INSERT INTO sections (course_id, instructor_id, name, day_time, room, capacity, semester, current_year) VALUES (3, 2, 'Section 3', 'Friday 12:00-1:30', "C02", 50, 'Monsoon', 2025);
+INSERT INTO sections (course_id, instructor_id, name, day_time, room, capacity, semester, current_year) VALUES (4, 1, 'Section 4', 'Tuesday 1:00-2:30', "C201", 147, 'Winter', 2025);
+INSERT INTO sections (course_id, instructor_id, name, day_time, room, capacity, semester, current_year) VALUES (5, 1, 'Section 5', 'Friday 3:00-4:30', "C101", 84, 'Monsoon', 2025);
+INSERT INTO sections (course_id, instructor_id, name, day_time, room, capacity, semester, current_year) VALUES (6, 1, 'Section 6', 'Thursday 9:30-11:00', "B003", 60, 'Winter', 2025);
